@@ -113,6 +113,7 @@ struct ReScaleWidget : ModuleWidget {
 
         setModule(module);
         setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/ReScale.svg")));
+        dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
     
         //SCREWS - SPECIAL SPACING FOR RACK WIDTH*4
         addChild(createWidget<as_HexScrew>(Vec(0, 0)));
@@ -120,14 +121,14 @@ struct ReScaleWidget : ModuleWidget {
         addChild(createWidget<as_HexScrew>(Vec(0, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
         addChild(createWidget<as_HexScrew>(Vec(box.size.x - RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
         //PORTS
-        addInput(createInput<as_PJ301MPort>(Vec(18, 65), module, ReScale::INPUT_0));
-        addInput(createInput<as_PJ301MPort>(Vec(18, 105), module, ReScale::INPUT_1));
-        addInput(createInput<as_PJ301MPort>(Vec(18, 145), module, ReScale::INPUT_2));
-        addInput(createInput<as_PJ301MPort>(Vec(18, 185), module, ReScale::INPUT_3));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 45), module, ReScale::INPUT_0));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 89), module, ReScale::INPUT_1));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 133), module, ReScale::INPUT_2));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 177), module, ReScale::INPUT_3));
 
-        addParam(createParam<as_KnobBlackSnap4>(Vec(12, 226), module, ReScale::CONVERT_PARAM));
+        addParam(createParam<as_KnobBlackSnap4>(Vec(11, 268), module, ReScale::CONVERT_PARAM));
 
-        addOutput(createOutput<as_PJ301MPortGold>(Vec(18, 280), module, ReScale::OUTPUT));
+        addOutput(createOutput<as_PJ301MPortGold>(Vec(18, 330), module, ReScale::OUTPUT));
 
 
     }

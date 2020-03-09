@@ -60,7 +60,7 @@ void process(const ProcessArgs &args) override {
     //TRIGGER 1
     if (btnTrigger1.process(params[TRIGGER_SWITCH_1].getValue()) || extTrigger1_1.process(inputs[CV_TRIG_INPUT_1_1].getVoltage()) || extTrigger1_2.process(inputs[CV_TRIG_INPUT_1_2].getVoltage())) {
         resetLight1 = 1.0;
-        triggerPulse1.trigger(1e-3f);
+        triggerPulse1.trigger();
     }
     trg_pulse1 = triggerPulse1.process(1.0 * args.sampleTime);
     outputs[TRIGGER_OUT1].setVoltage((trg_pulse1 ? 10.0f : 0.0f));
@@ -71,7 +71,7 @@ void process(const ProcessArgs &args) override {
     //TRIGGER 2
     if (btnTrigger2.process(params[TRIGGER_SWITCH_2].getValue()) || extTrigger2_1.process(inputs[CV_TRIG_INPUT_2_1].getVoltage()) || extTrigger2_2.process(inputs[CV_TRIG_INPUT_2_2].getVoltage())) {
         resetLight2 = 1.0;
-        triggerPulse2.trigger(1e-3f);
+        triggerPulse2.trigger();
     }
 
     trg_pulse2 = triggerPulse2.process(1.0 * args.sampleTime);
@@ -167,6 +167,7 @@ struct TriggersMKIIIWidget : ModuleWidget {
     TriggersMKIIIWidget(TriggersMKIII *module) {
         setModule(module);
         setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/TriggersMKIII.svg")));
+        dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
     
         //SCREWS
         addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -176,10 +177,10 @@ struct TriggersMKIIIWidget : ModuleWidget {
 
         static const float led_offset = 3.3;
         static const float led_center = 15;
-        static const float y_offset = 150;
+        static const float y_offset = 160;
         //TRIGGER 1
         
-        textField1 = createWidget<LedDisplayTextField>(Vec(6, 46));
+        textField1 = createWidget<LedDisplayTextField>(Vec(6, 36));
         textField1->box.size = Vec(78, 30);
         textField1->multiline = false;
         if (module) {
@@ -198,7 +199,7 @@ struct TriggersMKIIIWidget : ModuleWidget {
 
         //TRIGGER 2
         
-        textField2 = createWidget<LedDisplayTextField>(Vec(6, 46+y_offset));
+        textField2 = createWidget<LedDisplayTextField>(Vec(6, 36+y_offset));
         textField2->box.size = Vec(78, 30);
         textField2->multiline = false;
         if (module) {

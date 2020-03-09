@@ -69,6 +69,7 @@ struct VCAWidget : ModuleWidget {
 	VCAWidget(VCA *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/VCA.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -76,20 +77,20 @@ struct VCAWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//SLIDERS
-		addParam(createParam<as_SlidePot>(Vec(10, 70), module, VCA::LEVEL1_PARAM));
-		addParam(createParam<as_SlidePot>(Vec(55, 70), module, VCA::LEVEL2_PARAM));
+		addParam(createParam<as_SlidePot>(Vec(11, 50), module, VCA::LEVEL1_PARAM));
+		addParam(createParam<as_SlidePot>(Vec(56, 50), module, VCA::LEVEL2_PARAM));
 		//MODE SWITCHES
-		addParam(createParam<as_CKSS>(Vec(14, 190), module, VCA::MODE1_PARAM));
-		addParam(createParam<as_CKSS>(Vec(59, 190), module, VCA::MODE2_PARAM));
+		addParam(createParam<as_CKSS>(Vec(12, 183), module, VCA::MODE1_PARAM));
+		addParam(createParam<as_CKSS>(Vec(58, 183), module, VCA::MODE2_PARAM));
 		//PORTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 217), module, VCA::ENV1_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(55, 217), module, VCA::ENV2_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(9, 212), module, VCA::ENV1_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(55, 212), module, VCA::ENV2_INPUT));
 
-		addInput(createInput<as_PJ301MPort>(Vec(10, 260), module, VCA::IN1_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(55, 260), module, VCA::IN2_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(10, 261), module, VCA::IN1_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(55, 261), module, VCA::IN2_INPUT));
 		
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(10, 310), module, VCA::OUT1_OUTPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 310), module, VCA::OUT2_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(10, 319), module, VCA::OUT1_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 319), module, VCA::OUT2_OUTPUT));
 
 	}
 };

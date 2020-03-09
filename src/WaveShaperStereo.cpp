@@ -211,6 +211,7 @@ struct WaveShaperStereoWidget : ModuleWidget {
 
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/WaveShaperStereo.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -218,26 +219,26 @@ struct WaveShaperStereoWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//PARAMS
-		addParam(createParam<as_FxKnobBlack>(Vec(43, 60), module, WaveShaperStereo::SHAPE_PARAM));
-		addParam(createParam<as_FxKnobBlack>(Vec(43, 125), module, WaveShaperStereo::SCALE_PARAM));
+		addParam(createParam<as_FxKnobBlack>(Vec(43, 50), module, WaveShaperStereo::SHAPE_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 116), module, WaveShaperStereo::SCALE_PARAM));
 		//RANGE SWITCH
-		addParam(createParam<as_CKSSH>(Vec(33, 220), module, WaveShaperStereo::RANGE_PARAM));
+		addParam(createParam<as_CKSSH>(Vec(55, 208), module, WaveShaperStereo::RANGE_PARAM));
 		//CV INPUTS		
-		addInput(createInput<as_PJ301MPort>(Vec(10, 67), module, WaveShaperStereo::SHAPE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 110), module, WaveShaperStereo::SCALE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(33, 182), module, WaveShaperStereo::RANGE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 57), module, WaveShaperStereo::SHAPE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 155), module, WaveShaperStereo::SCALE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 205), module, WaveShaperStereo::RANGE_CV_INPUT));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(55, 260), module, WaveShaperStereo::BYPASS_SWITCH));
-		addChild(createLight<LedLight<RedLight>>(Vec(57.2, 262), module, WaveShaperStereo::BYPASS_LED));
+		addParam(createParam<LEDBezel>(Vec(12, 255), module, WaveShaperStereo::BYPASS_SWITCH));
+		addChild(createLight<LedLight<RedLight>>(Vec(12+2.2, 255+2), module, WaveShaperStereo::BYPASS_LED));
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(10, 259), module, WaveShaperStereo::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(55, 254), module, WaveShaperStereo::BYPASS_CV_INPUT));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 152), module, WaveShaperStereo::WAVE_MOD_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(15, 300), module, WaveShaperStereo::SIGNAL_INPUT_L));
-		addInput(createInput<as_PJ301MPort>(Vec(15, 330), module, WaveShaperStereo::SIGNAL_INPUT_R));
+		addInput(createInput<as_PJ301MPort>(Vec(55, 155), module, WaveShaperStereo::WAVE_MOD_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 301), module, WaveShaperStereo::SIGNAL_INPUT_L));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 335), module, WaveShaperStereo::SIGNAL_INPUT_R));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(50, 300), module, WaveShaperStereo::SIGNAL_OUTPUT_L));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(50, 330), module, WaveShaperStereo::SIGNAL_OUTPUT_R));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 301), module, WaveShaperStereo::SIGNAL_OUTPUT_L));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 335), module, WaveShaperStereo::SIGNAL_OUTPUT_R));
 
 	}
 };

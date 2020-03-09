@@ -378,7 +378,7 @@ struct MsDisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\\\\\\\", NULL);
 	*/
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -390,10 +390,11 @@ struct DelayPlusStereoFxWidget : ModuleWidget {
 		
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/DelayPlusStereo.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		//MS DISPLAY L
 		MsDisplayWidget *display1 = new MsDisplayWidget();
-		display1->box.pos = Vec(7,50);
+		display1->box.pos = Vec(7,30);
 		display1->box.size = Vec(70, 20);
 		if (module) {
             display1->value = &module->lcd_tempo1;
@@ -402,7 +403,7 @@ struct DelayPlusStereoFxWidget : ModuleWidget {
 
 		//MS DISPLAY R
 		MsDisplayWidget *display2 = new MsDisplayWidget();
-		display2->box.pos = Vec(102,50);
+		display2->box.pos = Vec(102,30);
 		display2->box.size = Vec(70, 20);
 		if (module) {
             display2->value = &module->lcd_tempo2;
@@ -414,54 +415,54 @@ struct DelayPlusStereoFxWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//KNOBS L
-		addParam(createParam<as_FxKnobWhite>(Vec(37, 78), module, DelayPlusStereoFx::TIME_PARAM_1));
-		addParam(createParam<as_FxKnobWhite>(Vec(37, 130), module, DelayPlusStereoFx::FEEDBACK_PARAM_1));
-		addParam(createParam<as_FxKnobWhite>(Vec(37, 180), module, DelayPlusStereoFx::COLOR_PARAM_1));
+		addParam(createParam<as_KnobSmall>(Vec(43, 69.5), module, DelayPlusStereoFx::TIME_PARAM_1));
+		addParam(createParam<as_KnobSmall>(Vec(43, 121.5), module, DelayPlusStereoFx::FEEDBACK_PARAM_1));
+		addParam(createParam<as_KnobSmall>(Vec(43, 171.5), module, DelayPlusStereoFx::COLOR_PARAM_1));
 		//KNOBS R
-		addParam(createParam<as_FxKnobWhite>(Vec(106, 78), module, DelayPlusStereoFx::TIME_PARAM_2));
-		addParam(createParam<as_FxKnobWhite>(Vec(106, 130), module, DelayPlusStereoFx::FEEDBACK_PARAM_2));
-		addParam(createParam<as_FxKnobWhite>(Vec(106, 180), module, DelayPlusStereoFx::COLOR_PARAM_2));
+		addParam(createParam<as_KnobSmall>(Vec(107, 69.5), module, DelayPlusStereoFx::TIME_PARAM_2));
+		addParam(createParam<as_KnobSmall>(Vec(107, 121.5), module, DelayPlusStereoFx::FEEDBACK_PARAM_2));
+		addParam(createParam<as_KnobSmall>(Vec(107, 171.5), module, DelayPlusStereoFx::COLOR_PARAM_2));
 		//FEEDBACK LINK SWITCH
-		addParam(createParam<as_CKSSwhite>(Vec(82, 145), module, DelayPlusStereoFx::FBK_LINK_PARAM));
+		addParam(createParam<as_CKSSwhite>(Vec(81, 124.5), module, DelayPlusStereoFx::FBK_LINK_PARAM));
 		//COLOR LINK SWITCH
-		addParam(createParam<as_CKSSwhite>(Vec(82, 195), module, DelayPlusStereoFx::COLOR_LINK_PARAM));
+		addParam(createParam<as_CKSSwhite>(Vec(81, 174.5), module, DelayPlusStereoFx::COLOR_LINK_PARAM));
 		//MIX KNOB
-		addParam(createParam<as_FxKnobWhite>(Vec(71, 251), module, DelayPlusStereoFx::MIX_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(107, 267), module, DelayPlusStereoFx::MIX_PARAM));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(79, 292), module, DelayPlusStereoFx::BYPASS_SWITCH ));
-		addChild(createLight<LedLight<RedLight>>(Vec(79+2.2, 294), module, DelayPlusStereoFx::BYPASS_LED));
+		addParam(createParam<LEDBezel>(Vec(12, 272), module, DelayPlusStereoFx::BYPASS_SWITCH ));
+		addChild(createLight<LedLight<RedLight>>(Vec(12+2.2, 272+2), module, DelayPlusStereoFx::BYPASS_LED));
 		//INPUTS CV L
-		addInput(createInput<as_PJ301MPort>(Vec(7, 87), module, DelayPlusStereoFx::TIME_CV_INPUT_1));
-		addInput(createInput<as_PJ301MPort>(Vec(7, 137), module, DelayPlusStereoFx::FEEDBACK__CV_INPUT_1));
-		addInput(createInput<as_PJ301MPort>(Vec(7, 187), module, DelayPlusStereoFx::COLOR_CV_INPUT_1));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 72.5), module, DelayPlusStereoFx::TIME_CV_INPUT_1));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 124.5), module, DelayPlusStereoFx::FEEDBACK__CV_INPUT_1));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 174.5), module, DelayPlusStereoFx::COLOR_CV_INPUT_1));
 		//INPUTS CV R
-		addInput(createInput<as_PJ301MPort>(Vec(150, 87), module, DelayPlusStereoFx::TIME_CV_INPUT_2));
-		addInput(createInput<as_PJ301MPort>(Vec(150, 137), module, DelayPlusStereoFx::FEEDBACK__CV_INPUT_2));
-		addInput(createInput<as_PJ301MPort>(Vec(150, 187), module, DelayPlusStereoFx::COLOR_CV_INPUT_2));
+		addInput(createInput<as_PJ301MPort>(Vec(145, 72.5), module, DelayPlusStereoFx::TIME_CV_INPUT_2));
+		addInput(createInput<as_PJ301MPort>(Vec(145, 124.5), module, DelayPlusStereoFx::FEEDBACK__CV_INPUT_2));
+		addInput(createInput<as_PJ301MPort>(Vec(145, 174.5), module, DelayPlusStereoFx::COLOR_CV_INPUT_2));
 
 		//DELAY SIGNAL SEND L
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(15, 224), module, DelayPlusStereoFx::COLOR_SEND_1));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(11, 223), module, DelayPlusStereoFx::COLOR_SEND_1));
 		//DELAY SIGNAL RETURN L
-		addInput(createInput<as_PJ301MPort>(Vec(50, 224), module, DelayPlusStereoFx::COLOR_RETURN_1));
+		addInput(createInput<as_PJ301MPort>(Vec(46, 223), module, DelayPlusStereoFx::COLOR_RETURN_1));
 
 		//DELAY SIGNAL SEND R
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(105, 224), module, DelayPlusStereoFx::COLOR_SEND_2));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(110, 223), module, DelayPlusStereoFx::COLOR_SEND_2));
 		//DELAY SIGNAL RETURN R
-		addInput(createInput<as_PJ301MPort>(Vec(140, 224), module, DelayPlusStereoFx::COLOR_RETURN_2));
+		addInput(createInput<as_PJ301MPort>(Vec(145, 223), module, DelayPlusStereoFx::COLOR_RETURN_2));
 
 		//MIX CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(40, 258), module, DelayPlusStereoFx::MIX_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(145, 270), module, DelayPlusStereoFx::MIX_CV_INPUT));
 		//SIGNAL INPUT L
-		addInput(createInput<as_PJ301MPort>(Vec(20, 300), module, DelayPlusStereoFx::SIGNAL_INPUT_1));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 305), module, DelayPlusStereoFx::SIGNAL_INPUT_1));
 		//SIGNAL INPUT R
-		addInput(createInput<as_PJ301MPort>(Vec(20, 330), module, DelayPlusStereoFx::SIGNAL_INPUT_2));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 335), module, DelayPlusStereoFx::SIGNAL_INPUT_2));
 		//SIGNAL OUTPUT L
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(135, 300), module, DelayPlusStereoFx::SIGNAL_OUTPUT_1));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(145, 305), module, DelayPlusStereoFx::SIGNAL_OUTPUT_1));
 		//SIGNAL OUTPUT R
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(135, 330), module, DelayPlusStereoFx::SIGNAL_OUTPUT_2));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(145, 335), module, DelayPlusStereoFx::SIGNAL_OUTPUT_2));
 
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(78, 322), module, DelayPlusStereoFx::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(46, 271), module, DelayPlusStereoFx::BYPASS_CV_INPUT));
 
 	}
 };

@@ -60,6 +60,7 @@ struct StereoVUmeterWidget : ModuleWidget {
 	StereoVUmeterWidget(StereoVUmeter *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/StereoVUmeter.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS - SPECIAL SPACING FOR RACK WIDTH*4
 		addChild(createWidget<as_HexScrew>(Vec(0, 0)));
@@ -70,7 +71,7 @@ struct StereoVUmeterWidget : ModuleWidget {
 		// LEFT COLUMN LEDs
 		static const float leftCol = 15;
 		static const float offsetY = 12;
-		static const float startY = 66;
+		static const float startY = 56;
 			addChild(createLight<MeterLight<RedLight>>(Vec(leftCol, startY + offsetY * 0), module, StereoVUmeter::METER_LIGHT_LEFT + 0));
 			addChild(createLight<MeterLight<RedLight>>(Vec(leftCol, startY + offsetY * 1), module, StereoVUmeter::METER_LIGHT_LEFT + 1));
 			addChild(createLight<MeterLight<RedLight>>(Vec(leftCol, startY + offsetY * 2), module, StereoVUmeter::METER_LIGHT_LEFT + 2));

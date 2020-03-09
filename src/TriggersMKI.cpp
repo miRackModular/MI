@@ -90,7 +90,7 @@ struct TriggersMKI: Module {
         if (BtnTrigger.process(params[MOMENTARY_SWITCH].getValue())) {
             resetLight = 1.0;
             if (!running) {
-                triggerPulse.trigger(1e-3f);
+                triggerPulse.trigger();
 
             }
         }
@@ -155,7 +155,7 @@ struct VoltsDisplayWidget : TransparentWidget {
 
     Vec textPos = Vec(3.0f, 17.0f); 
 
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
 
     if(*negative){
         textColor = nvgRGB(0xf0, 0x00, 0x00);
@@ -176,6 +176,7 @@ struct TriggersMKIWidget : ModuleWidget {
     TriggersMKIWidget(TriggersMKI *module) {
         setModule(module);
         setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/TriggersMKI.svg")));
+        dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
     
         //SCREWS
         addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -185,7 +186,7 @@ struct TriggersMKIWidget : ModuleWidget {
 
         //VOLTS DISPLAY 
         VoltsDisplayWidget *display1 = new VoltsDisplayWidget();
-        display1->box.pos = Vec(10,50);
+        display1->box.pos = Vec(10,40);
         display1->box.size = Vec(70, 20);
         if (module) {
             display1->value = &module->display_volts;
@@ -194,15 +195,15 @@ struct TriggersMKIWidget : ModuleWidget {
         addChild(display1); 
 
         //PARAMS
-        addParam(createParam<as_KnobBlack>(Vec(26, 77), module, TriggersMKI::VOLTAGE_PARAM));
+        addParam(createParam<as_KnobBlack>(Vec(26, 85), module, TriggersMKI::VOLTAGE_PARAM));
         //SWITCHES
         static const float led_offset = 3.3;
         static const float led_center = 15;
-        addParam(createParam<BigLEDBezel>(Vec(led_center, 182), module, TriggersMKI::RUN_SWITCH));
-        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 182+led_offset), module, TriggersMKI::RUN_LED));
+        addParam(createParam<BigLEDBezel>(Vec(led_center, 192), module, TriggersMKI::RUN_SWITCH));
+        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 192+led_offset), module, TriggersMKI::RUN_LED));
 
-        addParam(createParam<BigLEDBezel>(Vec(led_center, 262), module, TriggersMKI::MOMENTARY_SWITCH));
-        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 262+led_offset), module, TriggersMKI::MOMENTARY_LED));
+        addParam(createParam<BigLEDBezel>(Vec(led_center, 272), module, TriggersMKI::MOMENTARY_SWITCH));
+        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 272+led_offset), module, TriggersMKI::MOMENTARY_LED));
 
         //PORTS
         addInput(createInput<as_PJ301MPort>(Vec(10, 145), module, TriggersMKI::CV_RUN_INPUT));

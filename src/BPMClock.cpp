@@ -15,7 +15,6 @@ struct LFOGenerator {
 	float phase = 0.0f;
 	float pw = 0.5f;
 	float freq = 1.0f;
-	dsp::SchmittTrigger resetTrigger;
 	void setFreq(float freq_to_set)
   {
     freq = freq_to_set;
@@ -26,10 +25,8 @@ struct LFOGenerator {
 		if (phase >= 1.0f)
 			phase -= 1.0f;
 	}
-  void setReset(float reset) {
-		if (resetTrigger.process(reset)) {
-			phase = 0.0f;
-		}
+  void reset() {
+		phase = 0.0f;
 	}
 	float sqr() {
 		float sqr = phase < pw ? 1.0f : -1.0f;
@@ -74,8 +71,7 @@ struct BPMClock : Module {
   dsp::SchmittTrigger bars_trig;
   dsp::SchmittTrigger run_button_trig;
   dsp::SchmittTrigger ext_run_trig;
-	dsp::SchmittTrigger reset_btn_trig;
-  dsp::SchmittTrigger reset_ext_trig;
+	dsp::SchmittTrigger reset_trig;
   dsp::SchmittTrigger bpm_mode_trig;
 
   dsp::PulseGenerator resetPulse;
@@ -105,9 +101,8 @@ struct BPMClock : Module {
 	int quarters_count = 0;
   int bars_count = 0;
   
-  float tempo =120.0f;
-  int time_sig_top, time_sig_bottom = 0;
-  int time_sig_bottom_old = 0;
+  float tempo = 120.0f;
+  int time_sig_top = 4, time_sig_bottom = 4;
   float frequency = 2.0f;
   int quarters_count_limit = 4;
   int eighths_count_limit = 2;
@@ -163,8 +158,8 @@ struct BPMClock : Module {
     frequency = tempo/60.0f;
 
     //RESET TRIGGER
-    if(reset_ext_trig.process(inputs[RESET_INPUT].getVoltage()) || reset_btn_trig.process(params[RESET_SWITCH].getValue())) {
-      clock.setReset(1.0f);
+    if(reset_trig.process(inputs[RESET_INPUT].getVoltage() + params[RESET_SWITCH].getValue())) {
+      clock.reset();
       eighths_count = 0;
       quarters_count = 0;
       bars_count = 0;
@@ -340,7 +335,7 @@ struct BpmDisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\\\", NULL);
     */
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -392,7 +387,7 @@ struct SigDisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\", NULL);
     */
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -405,6 +400,7 @@ struct BPMClockWidget : ModuleWidget {
     
     setModule(module);
     setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BPMClock.svg")));
+    dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
     //SCREWS
     addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -413,56 +409,56 @@ struct BPMClockWidget : ModuleWidget {
     addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
     //BPM DISPLAY 
     BpmDisplayWidget *display = new BpmDisplayWidget();
-    display->box.pos = Vec(23,45);
+    display->box.pos = Vec(23,30);
     display->box.size = Vec(45, 20);
     if (module) {
       display->value = &module->tempo;
     }
     addChild(display); 
     //TEMPO KNOB
-    addParam(createParam<as_KnobBlackSnap>(Vec(8, 69), module, BPMClock::TEMPO_PARAM));
+    addParam(createParam<as_KnobBlackSnap>(Vec(46, 59), module, BPMClock::TEMPO_PARAM));
     //OLD/NEW SWITCH FROM 40-250 TO 30-300
    // addParam(createParam<as_CKSS>(Vec(67, 77), module, BPMClock::MODE_PARAM));
     //SIG TOP DISPLAY 
     SigDisplayWidget *display2 = new SigDisplayWidget();
-    display2->box.pos = Vec(54,123);
+    display2->box.pos = Vec(54,109);
     display2->box.size = Vec(30, 20);
     if (module) {
       display2->value = &module->time_sig_top;
     }
     addChild(display2);
     //SIG TOP KNOB
-    addParam(createParam<as_Knob>(Vec(8, 110), module, BPMClock::TIMESIGTOP_PARAM));
+    addParam(createParam<as_KnobSmall>(Vec(12, 104), module, BPMClock::TIMESIGTOP_PARAM));
     //SIG BOTTOM DISPLAY    
     SigDisplayWidget *display3 = new SigDisplayWidget();
-    display3->box.pos = Vec(54,155);
+    display3->box.pos = Vec(54,145);
     display3->box.size = Vec(30, 20);
     if (module) {
       display3->value = &module->time_sig_bottom;
     }
     addChild(display3); 
     //SIG BOTTOM KNOB
-    addParam(createParam<as_Knob>(Vec(8, 150), module, BPMClock::TIMESIGBOTTOM_PARAM));
+    addParam(createParam<as_KnobSmall>(Vec(12, 140), module, BPMClock::TIMESIGBOTTOM_PARAM));
     //RESET & RUN LEDS
-    addParam(createParam<LEDBezel>(Vec(33.5, 202), module, BPMClock::RUN_SWITCH ));
-    addChild(createLight<LedLight<RedLight>>(Vec(35.7, 204.3), module, BPMClock::RUN_LED));
+    addParam(createParam<LEDBezel>(Vec(33.5, 196), module, BPMClock::RUN_SWITCH ));
+    addChild(createLight<LedLight<RedLight>>(Vec(35.7, 198), module, BPMClock::RUN_LED));
 
-    addParam(createParam<LEDBezel>(Vec(33.5, 241), module, BPMClock::RESET_SWITCH ));
-    addChild(createLight<LedLight<RedLight>>(Vec(35.7, 243.2), module, BPMClock::RESET_LED));
+    addParam(createParam<LEDBezel>(Vec(33.5, 242), module, BPMClock::RESET_SWITCH ));
+    addChild(createLight<LedLight<RedLight>>(Vec(35.7, 244.2), module, BPMClock::RESET_LED));
     //RESET INPUT
-    addInput(createInput<as_PJ301MPort>(Vec(6, 240), module, BPMClock::RESET_INPUT));
+    addInput(createInput<as_PJ301MPort>(Vec(6, 241), module, BPMClock::RESET_INPUT));
     //RESET OUTPUT
-    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 240), module, BPMClock::RESET_OUTPUT));
+    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 241), module, BPMClock::RESET_OUTPUT));
     //TEMPO OUTPUTS
-    addOutput(createOutput<as_PJ301MPortGold>(Vec(6, 280), module, BPMClock::BAR_OUT));
-    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 280), module, BPMClock::BEAT_OUT));
-    addOutput(createOutput<as_PJ301MPortGold>(Vec(6, 320), module, BPMClock::EIGHTHS_OUT));
-    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 320), module, BPMClock::SIXTEENTHS_OUT));
+    addOutput(createOutput<as_PJ301MPortGold>(Vec(6, 290), module, BPMClock::BAR_OUT));
+    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 290), module, BPMClock::BEAT_OUT));
+    addOutput(createOutput<as_PJ301MPortGold>(Vec(6, 336), module, BPMClock::EIGHTHS_OUT));
+    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 336), module, BPMClock::SIXTEENTHS_OUT));
 
     //RUN CV
-    addInput(createInput<as_PJ301MPort>(Vec(6, 200), module, BPMClock::RUN_CV));
+    addInput(createInput<as_PJ301MPort>(Vec(6, 195), module, BPMClock::RUN_CV));
     //RUN TRIGGER OUTPUT
-    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 200), module, BPMClock::RUN_OUTPUT));
+    addOutput(createOutput<as_PJ301MPortGold>(Vec(59, 195), module, BPMClock::RUN_OUTPUT));
 
   }
 };
