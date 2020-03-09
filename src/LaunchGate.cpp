@@ -175,7 +175,7 @@ struct NumberDisplayWidget : TransparentWidget {
 
     Vec textPos = Vec(4.0f, 17.0f); 
 
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -188,6 +188,7 @@ struct LaunchGateWidget : ModuleWidget {
     
     setModule(module);
     setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/LaunchGate.svg")));   
+    dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
     
   //SCREWS
     addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -217,7 +218,7 @@ struct LaunchGateWidget : ModuleWidget {
       addParam(createParam<LEDBezel>(Vec(11, 82), module, LaunchGate::RST_BUTTON1 ));
       addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3), module, LaunchGate::RESET_LIGHT1));
 
-      addParam(createParam<as_KnobBlackSnap>(Vec(43, 73), module, LaunchGate::COUNT_NUM_PARAM_1)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73), module, LaunchGate::COUNT_NUM_PARAM_1)); 
 
       addInput(createInput<as_PJ301MPort>(Vec(10, 125), module, LaunchGate::RESET_IN_1));
       addInput(createInput<as_PJ301MPort>(Vec(55, 125), module, LaunchGate::CLK_IN_1));
@@ -246,7 +247,7 @@ struct LaunchGateWidget : ModuleWidget {
       addParam(createParam<LEDBezel>(Vec(11, 82+ group_offset), module, LaunchGate::RST_BUTTON2 ));
       addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3+ group_offset), module, LaunchGate::RESET_LIGHT2));
 
-      addParam(createParam<as_KnobBlackSnap>(Vec(43, 73 + group_offset), module, LaunchGate::COUNT_NUM_PARAM_2)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73 + group_offset), module, LaunchGate::COUNT_NUM_PARAM_2)); 
 
       addInput(createInput<as_PJ301MPort>(Vec(10, 125 + group_offset), module, LaunchGate::RESET_IN_2));
       addInput(createInput<as_PJ301MPort>(Vec(55, 125 + group_offset), module, LaunchGate::CLK_IN_2));

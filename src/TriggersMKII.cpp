@@ -159,7 +159,7 @@ struct LabelDisplayWidget : TransparentWidget {
 
     Vec textPos = Vec(4.0f, 16.0f); 
 
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     //nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
     nvgText(args.vg, textPos.x, textPos.y, label_values[*value], NULL);
@@ -172,6 +172,7 @@ struct TriggersMKIIWidget : ModuleWidget {
     TriggersMKIIWidget(TriggersMKII *module) {
         setModule(module);
         setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/TriggersMKII.svg")));
+        dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
     
         //SCREWS
         addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -181,11 +182,11 @@ struct TriggersMKIIWidget : ModuleWidget {
 
         static const float led_offset = 3.3;
         static const float led_center = 15;
-        static const float y_offset = 150;
+        static const float y_offset = 160;
         //TRIGGER 1
         //LABEL DISPLAY 
         LabelDisplayWidget *display1 = new LabelDisplayWidget();
-        display1->box.pos = Vec(6,50);
+        display1->box.pos = Vec(6,40);
         display1->box.size = Vec(78, 20);
         if (module) {
             display1->value = &module->label_num1;
@@ -204,7 +205,7 @@ struct TriggersMKIIWidget : ModuleWidget {
         //TRIGGER 2
         //LABEL DISPLAY 
         LabelDisplayWidget *display2 = new LabelDisplayWidget();
-        display2->box.pos = Vec(6,50+y_offset);
+        display2->box.pos = Vec(6,40+y_offset);
         display2->box.size = Vec(78, 20);
         if (module) {
             display2->value = &module->label_num2;

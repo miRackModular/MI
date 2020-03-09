@@ -60,6 +60,7 @@ struct StereoVUmeterWidget : ModuleWidget {
 	StereoVUmeterWidget(StereoVUmeter *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/StereoVUmeter.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS - SPECIAL SPACING FOR RACK WIDTH*4
 		addChild(createWidget<as_HexScrew>(Vec(0, 0)));

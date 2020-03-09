@@ -1,3 +1,5 @@
+V1_COMPAT=1
+
 RACK_DIR ?= ../..
 
 FLAGS +=

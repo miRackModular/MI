@@ -340,7 +340,7 @@ struct BpmDisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\\\", NULL);
     */
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -392,7 +392,7 @@ struct SigDisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\", NULL);
     */
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -405,6 +405,7 @@ struct BPMClockWidget : ModuleWidget {
     
     setModule(module);
     setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BPMClock.svg")));
+    dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
     //SCREWS
     addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -413,7 +414,7 @@ struct BPMClockWidget : ModuleWidget {
     addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
     //BPM DISPLAY 
     BpmDisplayWidget *display = new BpmDisplayWidget();
-    display->box.pos = Vec(23,45);
+    display->box.pos = Vec(23,40);
     display->box.size = Vec(45, 20);
     if (module) {
       display->value = &module->tempo;
@@ -425,14 +426,14 @@ struct BPMClockWidget : ModuleWidget {
    // addParam(createParam<as_CKSS>(Vec(67, 77), module, BPMClock::MODE_PARAM));
     //SIG TOP DISPLAY 
     SigDisplayWidget *display2 = new SigDisplayWidget();
-    display2->box.pos = Vec(54,123);
+    display2->box.pos = Vec(54,119);
     display2->box.size = Vec(30, 20);
     if (module) {
       display2->value = &module->time_sig_top;
     }
     addChild(display2);
     //SIG TOP KNOB
-    addParam(createParam<as_Knob>(Vec(8, 110), module, BPMClock::TIMESIGTOP_PARAM));
+    addParam(createParam<as_KnobSmall>(Vec(12, 114), module, BPMClock::TIMESIGTOP_PARAM));
     //SIG BOTTOM DISPLAY    
     SigDisplayWidget *display3 = new SigDisplayWidget();
     display3->box.pos = Vec(54,155);
@@ -442,7 +443,7 @@ struct BPMClockWidget : ModuleWidget {
     }
     addChild(display3); 
     //SIG BOTTOM KNOB
-    addParam(createParam<as_Knob>(Vec(8, 150), module, BPMClock::TIMESIGBOTTOM_PARAM));
+    addParam(createParam<as_KnobSmall>(Vec(12, 150), module, BPMClock::TIMESIGBOTTOM_PARAM));
     //RESET & RUN LEDS
     addParam(createParam<LEDBezel>(Vec(33.5, 202), module, BPMClock::RUN_SWITCH ));
     addChild(createLight<LedLight<RedLight>>(Vec(35.7, 204.3), module, BPMClock::RUN_LED));

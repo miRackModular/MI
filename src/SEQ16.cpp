@@ -343,7 +343,7 @@ struct StepsDisplayWidget : TransparentWidget {
     nvgText(args.vg, textPos.x, textPos.y, "\\\\", NULL);
 	*/
 
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, displayStr,  NULL);
   }
@@ -363,6 +363,7 @@ struct SEQ16Widget : ModuleWidget {
 	SEQ16Widget(SEQ16 *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/SEQ16.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//LCD STEPS SCREEN
 		StepsDisplayWidget *display = new StepsDisplayWidget();

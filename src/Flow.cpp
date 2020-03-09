@@ -146,7 +146,8 @@ struct FlowWidget : ModuleWidget {
         
         setModule(module);
         setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Flow.svg")));
-    
+        dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
+
         //SCREWS
         addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
         addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
@@ -158,25 +159,25 @@ struct FlowWidget : ModuleWidget {
 
         static const float led_offset = 3.3;
         static const float led_center = 15;
-        static const float y_offset = 150;
+        static const float y_offset = 165;
         //TRIGGER 1
         //SWITCH
         addParam(createParam<BigLEDBezel>(Vec(led_center, 50), module, Flow::SWITCH_1));
         addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 50+led_offset), module, Flow::TRIGGER_LED_1));
         //PORTS
-        addInput(createInput<as_PJ301MPort>(Vec(10, 140), module, Flow::CV_TRIG_INPUT_1));
-        addInput(createInput<as_PJ301MPort>(Vec(55, 140), module, Flow::RESET_1));
-        addInput(createInput<as_PJ301MPort>(Vec(10, 174), module, Flow::INPUT_1));
-        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 174), module, Flow::OUTPUT_1));
+        addInput(createInput<as_PJ301MPort>(Vec(10, 120), module, Flow::CV_TRIG_INPUT_1));
+        addInput(createInput<as_PJ301MPort>(Vec(55, 120), module, Flow::RESET_1));
+        addInput(createInput<as_PJ301MPort>(Vec(10, 160), module, Flow::INPUT_1));
+        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 160), module, Flow::OUTPUT_1));
         //TRIGGER 2
         //SWITCH
         addParam(createParam<BigLEDBezel>(Vec(led_center, 50+y_offset), module, Flow::SWITCH_2));
         addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 50+led_offset+y_offset), module, Flow::TRIGGER_LED_2));
         //PORTS
-        addInput(createInput<as_PJ301MPort>(Vec(10, 140+y_offset), module, Flow::CV_TRIG_INPUT_2));
-        addInput(createInput<as_PJ301MPort>(Vec(55, 140+y_offset), module, Flow::RESET_2));
-        addInput(createInput<as_PJ301MPort>(Vec(10, 174+y_offset), module, Flow::INPUT_2));
-        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 174+y_offset), module, Flow::OUTPUT_2));
+        addInput(createInput<as_PJ301MPort>(Vec(10, 120+y_offset), module, Flow::CV_TRIG_INPUT_2));
+        addInput(createInput<as_PJ301MPort>(Vec(55, 120+y_offset), module, Flow::RESET_2));
+        addInput(createInput<as_PJ301MPort>(Vec(10, 160+y_offset), module, Flow::INPUT_2));
+        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 160+y_offset), module, Flow::OUTPUT_2));
 
     }
 };

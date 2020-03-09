@@ -95,6 +95,19 @@ struct as_KnobBlack : app::SvgKnob {
 	}
 };
 
+struct as_KnobSmall : app::SvgKnob {
+	as_KnobSmall() {
+        minAngle = -0.83 * M_PI;
+		maxAngle = 0.83 * M_PI;
+		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/as-knob-small.svg")));
+	}
+};
+struct as_KnobSmallSnap : as_KnobSmall {
+	as_KnobSmallSnap() {
+		snap = true;
+	}
+};
+
 struct as_KnobBlackSnap : as_KnobBlack {
 	as_KnobBlackSnap() {
 		snap = true;
@@ -128,7 +141,14 @@ struct as_FxKnobBlack : app::SvgKnob {
 struct BigLEDBezel : app::SvgSwitch {
         BigLEDBezel() {
 				momentary = true;
-                addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/as_bigLEDBezel.svg")));
+                addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/as_bigLEDBezel_dark.svg")));
+        }
+};
+
+struct as_LEDBezel : app::SvgSwitch {
+        as_LEDBezel() {
+				momentary = true;
+                addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/as_LEDBezel_dark.svg")));
         }
 };
 
@@ -179,6 +199,7 @@ template <typename BASE>
 struct GiantLight : BASE {
         GiantLight() {
                 this->box.size = mm2px(Vec(18.0, 18.0));
+                this->bgColor = nvgRGB(0x1d, 0x35, 0x57);
         }
 };
 
@@ -186,7 +207,7 @@ template <typename BASE>
  struct MeterLight : BASE {
  	MeterLight() {
  		this->box.size = Vec(8, 8);
-		 this->bgColor = nvgRGB(0x14, 0x14, 0x14);
+		 this->bgColor = nvgRGB(0x1d, 0x35, 0x57);
  	}
  };
 
@@ -194,7 +215,7 @@ template <typename BASE>
  struct DisplayLedLight : BASE {
  	DisplayLedLight() {
  		this->box.size = mm2px(Vec(2.0, 2.0));
-		 this->bgColor = nvgRGB(0x14, 0x14, 0x14);
+		 this->bgColor = nvgRGB(0x1d, 0x35, 0x57);
  	}
  };
  struct OrangeLight : GrayModuleLightWidget {
@@ -206,8 +227,8 @@ template <typename BASE>
 template <typename BASE>
 struct LedLight : BASE {
 	LedLight() {
-	  //this->box.size = Vec(20.0, 20.0);
-	  this->box.size = mm2px(Vec(6.0, 6.0));
+	  this->box.size = Vec(18, 18);
+	  this->bgColor = nvgRGB(0x1d, 0x35, 0x57);
 	}
 };
 
@@ -222,20 +243,24 @@ struct YellowRedLight : GrayModuleLightWidget {
 struct as_PJ301MPort : app::SvgPort {
 	as_PJ301MPort() {
 		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/as-PJ301M.svg")));
+		shadow->box.pos = Vec(0, 2.5);
 	}
 };
 
 struct as_PJ301MPortGold : app::SvgPort {
 	as_PJ301MPortGold() {
 		setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/as_PJ301M_output_port.svg")));
+		box.size = Vec(24, 24);
+		shadow->box.size = Vec(24, 24);
+		shadow->box.pos = Vec(0, 2.5);
 	}
 };
 
 struct as_SlidePot : app::SvgSlider {
 	as_SlidePot() {
 		Vec margin = Vec(4, 4);
-		maxHandlePos = Vec(-1.5, -8).plus(margin);
-		minHandlePos = Vec(-1.5, 87).plus(margin);
+		maxHandlePos = Vec(-2, -3).plus(margin);
+		minHandlePos = Vec(-2, 93).plus(margin);
 		setBackgroundSvg(APP->window->loadSvg(asset::plugin(pluginInstance,"res/as-SlidePot.svg")));
 		background->wrap();
 		background->box.pos = margin;
@@ -248,8 +273,8 @@ struct as_SlidePot : app::SvgSlider {
 struct as_FaderPot : app::SvgSlider {
 	as_FaderPot() {
 		Vec margin = Vec(4, 4);
-		maxHandlePos = Vec(-1.5, -8).plus(margin);
-		minHandlePos = Vec(-1.5, 57).plus(margin);
+		maxHandlePos = Vec(-2, -3).plus(margin);
+		minHandlePos = Vec(-2, 63).plus(margin);
 		setBackgroundSvg(APP->window->loadSvg(asset::plugin(pluginInstance,"res/as-FaderPot.svg")));
 		background->wrap();
 		background->box.pos = margin;

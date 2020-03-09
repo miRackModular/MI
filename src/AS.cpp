@@ -16,7 +16,7 @@ void init(rack::Plugin *p) {
 	p->addModel(modelTriLFO);
 	p->addModel(modelAtNuVrTr);
 	p->addModel(modelBPMClock);
-	p->addModel(modelSEQ16);
+	// p->addModel(modelSEQ16);
 	p->addModel(modelMixer2ch);
 	p->addModel(modelMixer4ch);
 	p->addModel(modelMixer8ch);
@@ -62,10 +62,10 @@ void init(rack::Plugin *p) {
 	p->addModel(modelWaveShaper);
 	p->addModel(modelWaveShaperStereo);
 	//BLANK PANELS
-	p->addModel(modelBlankPanel4);
-	p->addModel(modelBlankPanel6);
-	p->addModel(modelBlankPanel8);
-	p->addModel(modelBlankPanelSpecial);
+	// p->addModel(modelBlankPanel4);
+	// p->addModel(modelBlankPanel6);
+	// p->addModel(modelBlankPanel8);
+	// p->addModel(modelBlankPanelSpecial);
 
 
 }

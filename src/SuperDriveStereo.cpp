@@ -219,6 +219,7 @@ struct SuperDriveStereoFxWidget : ModuleWidget {
 	SuperDriveStereoFxWidget(SuperDriveStereoFx *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/SuperDriveStereo.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -226,28 +227,28 @@ struct SuperDriveStereoFxWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//KNOBS  
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 60), module, SuperDriveStereoFx::DRIVE_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 125), module, SuperDriveStereoFx::TONE_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 190), module, SuperDriveStereoFx::OUTPUT_GAIN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 50), module, SuperDriveStereoFx::DRIVE_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, SuperDriveStereoFx::TONE_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, SuperDriveStereoFx::OUTPUT_GAIN_PARAM));
 		//LIGHTS
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 57), module, SuperDriveStereoFx::DRIVE_LIGHT));
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 122), module, SuperDriveStereoFx::TONE_LIGHT));
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, SuperDriveStereoFx::GAIN_LIGHT));
 		//CV INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 67), module, SuperDriveStereoFx::DRIVE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 132), module, SuperDriveStereoFx::TONE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 197), module, SuperDriveStereoFx::GAIN_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 89), module, SuperDriveStereoFx::DRIVE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 89), module, SuperDriveStereoFx::TONE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 184), module, SuperDriveStereoFx::GAIN_CV_INPUT));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(55, 260), module, SuperDriveStereoFx::BYPASS_SWITCH ));
-		addChild(createLight<LedLight<RedLight>>(Vec(57.2, 262), module, SuperDriveStereoFx::BYPASS_LED));
+		addParam(createParam<LEDBezel>(Vec(55, 149), module, SuperDriveStereoFx::BYPASS_SWITCH ));
+		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2), module, SuperDriveStereoFx::BYPASS_LED));
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(10, 259), module, SuperDriveStereoFx::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 184), module, SuperDriveStereoFx::BYPASS_CV_INPUT));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(15, 300), module, SuperDriveStereoFx::SIGNAL_INPUT_L));
-		addInput(createInput<as_PJ301MPort>(Vec(15, 330), module, SuperDriveStereoFx::SIGNAL_INPUT_R));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 291), module, SuperDriveStereoFx::SIGNAL_INPUT_L));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 325), module, SuperDriveStereoFx::SIGNAL_INPUT_R));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(50, 300), module, SuperDriveStereoFx::SIGNAL_OUTPUT_L));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(50, 330), module, SuperDriveStereoFx::SIGNAL_OUTPUT_R));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(54, 291), module, SuperDriveStereoFx::SIGNAL_OUTPUT_L));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(54, 325), module, SuperDriveStereoFx::SIGNAL_OUTPUT_R));
 	
 	}
 };

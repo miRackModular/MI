@@ -114,6 +114,7 @@ struct ADSRWidget : ModuleWidget {
    	 ADSRWidget(ADSR *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/ADSR.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));

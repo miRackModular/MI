@@ -348,7 +348,7 @@ struct TempodisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\\\", NULL);
     */
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -380,7 +380,7 @@ struct TxtDisplay : TransparentWidget{
       nvgFontFaceId(args.vg, font->handle);
       nvgTextLetterSpacing(args.vg, 0);
       nvgTextAlign(args.vg, NVG_ALIGN_LEFT);
-      NVGcolor  textColor = nvgRGB(0xf0, 0x00, 0x00);
+      NVGcolor  textColor = COLOR_WHITE;
       nvgFillColor(args.vg, textColor);
       //note texts
       nvgText(args.vg, 0, 0+v_s * 0,  "     1:", NULL);
@@ -565,6 +565,7 @@ struct BPMCalcWidget : ModuleWidget {
   BPMCalcWidget(BPMCalc *module) {
     setModule(module);
     setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BPMCalc.svg")));
+    dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
     //SCREWS
     addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -587,7 +588,7 @@ struct BPMCalcWidget : ModuleWidget {
     addChild(createLight<DisplayLedLight<RedLight>>(Vec(77, 56), module, BPMCalc::CLOCK_LOCK_LIGHT));
     addChild(createLight<DisplayLedLight<RedLight>>(Vec(77, 66), module, BPMCalc::CLOCK_LIGHT)); 
     //TEMPO KNOB
-    addParam(createParam<as_KnobBlackSnap>(Vec(156, 45), module, BPMCalc::TEMPO_PARAM));
+    addParam(createParam<as_KnobBlackSnap>(Vec(160, 45), module, BPMCalc::TEMPO_PARAM));
     //CALCULATOR DISPLAY 
     TxtDisplay *display1 = new TxtDisplay();
     display1->module = module;

@@ -83,6 +83,7 @@ struct AtNuVrTrWidget : ModuleWidget {
 	AtNuVrTrWidget(AtNuVrTr *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/AtNuVrTr.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -90,29 +91,29 @@ struct AtNuVrTrWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		const int group_offset = 160;
+		const int group_offset = 175;
 		//ATTN 1
-		addParam(createParam<as_KnobBlack>(Vec(34, 45), module, AtNuVrTr::ATEN1_PARAM));
-		addParam(createParam<as_Knob>(Vec(34, 100), module, AtNuVrTr::OFFSET1_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(39, 45), module, AtNuVrTr::ATEN1_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(39, 106), module, AtNuVrTr::OFFSET1_PARAM));
 
-		addChild(createLight<SmallLight<GreenRedLight>>(Vec(65, 95), module, AtNuVrTr::OUT1_POS_LIGHT));
+		addChild(createLight<SmallLight<GreenRedLight>>(Vec(65, 102), module, AtNuVrTr::OUT1_POS_LIGHT));
 
-		addInput(createInput<as_PJ301MPort>(Vec(4, 51), module, AtNuVrTr::CV_ATEN_1));
-		addInput(createInput<as_PJ301MPort>(Vec(4, 106), module, AtNuVrTr::CV_OFFSET_1));
+		addInput(createInput<as_PJ301MPort>(Vec(6, 48), module, AtNuVrTr::CV_ATEN_1));
+		addInput(createInput<as_PJ301MPort>(Vec(6, 109), module, AtNuVrTr::CV_OFFSET_1));
 
-		addInput(createInput<as_PJ301MPort>(Vec(8, 165), module, AtNuVrTr::IN1_INPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(43, 165), module, AtNuVrTr::OUT1_OUTPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(6, 160), module, AtNuVrTr::IN1_INPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(42, 160), module, AtNuVrTr::OUT1_OUTPUT));
 		//ATTN 2
-		addParam(createParam<as_KnobBlack>(Vec(34, 45+group_offset), module, AtNuVrTr::ATEN2_PARAM));
-		addParam(createParam<as_Knob>(Vec(34, 100+group_offset), module, AtNuVrTr::OFFSET2_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(39, 45+group_offset), module, AtNuVrTr::ATEN2_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(39, 106+group_offset), module, AtNuVrTr::OFFSET2_PARAM));
 
-		addChild(createLight<SmallLight<GreenRedLight>>(Vec(65, 95+group_offset), module, AtNuVrTr::OUT2_POS_LIGHT));
+		addChild(createLight<SmallLight<GreenRedLight>>(Vec(65, 102+group_offset), module, AtNuVrTr::OUT2_POS_LIGHT));
 
-		addInput(createInput<as_PJ301MPort>(Vec(4, 51+group_offset), module, AtNuVrTr::CV_ATEN_2));
-		addInput(createInput<as_PJ301MPort>(Vec(4, 106+group_offset), module, AtNuVrTr::CV_OFFSET_2));
+		addInput(createInput<as_PJ301MPort>(Vec(6, 48+group_offset), module, AtNuVrTr::CV_ATEN_2));
+		addInput(createInput<as_PJ301MPort>(Vec(6, 109+group_offset), module, AtNuVrTr::CV_OFFSET_2));
 
-		addInput(createInput<as_PJ301MPort>(Vec(8, 165+group_offset), module, AtNuVrTr::IN2_INPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(43, 165+group_offset), module, AtNuVrTr::OUT2_OUTPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(6, 160+group_offset), module, AtNuVrTr::IN2_INPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(42, 160+group_offset), module, AtNuVrTr::OUT2_OUTPUT));
 
 	}
 };

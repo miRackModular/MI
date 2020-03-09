@@ -253,7 +253,7 @@ struct MsDisplayWidget : TransparentWidget {
     nvgFillColor(args.vg, nvgTransRGBA(textColor, 16));
     nvgText(args.vg, textPos.x, textPos.y, "\\\\\\\\\\", NULL);
 	*/
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -265,45 +265,46 @@ struct DelayPlusFxWidget : ModuleWidget {
 		
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/DelayPlus.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		//MS DISPLAY 
 		MsDisplayWidget *display = new MsDisplayWidget();
-		display->box.pos = Vec(14,50);
+		display->box.pos = Vec(25,32);
 		display->box.size = Vec(70, 20);
 		if (module) {
             display->value = &module->lcd_tempo;
         }
 		addChild(display); 	
-		int y_offset=40;
+
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//KNOBS
-		addParam(createParam<as_FxKnobWhite>(Vec(74, 38+y_offset), module, DelayPlusFx::TIME_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(74, 90+y_offset), module, DelayPlusFx::FEEDBACK_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(74, 140+y_offset), module, DelayPlusFx::COLOR_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(74, 213+y_offset), module, DelayPlusFx::MIX_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(13, 77), module, DelayPlusFx::TIME_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(77, 77), module, DelayPlusFx::FEEDBACK_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(13, 168), module, DelayPlusFx::COLOR_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(77, 168), module, DelayPlusFx::MIX_PARAM));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(49.5, 250+y_offset), module, DelayPlusFx::BYPASS_SWITCH ));//Y=272
-		addChild(createLight<LedLight<RedLight>>(Vec(51.7, 252+y_offset), module, DelayPlusFx::BYPASS_LED));//Y=274
+		addParam(createParam<LEDBezel>(Vec(47, 290), module, DelayPlusFx::BYPASS_SWITCH ));//Y=272
+		addChild(createLight<LedLight<RedLight>>(Vec(47+2.2, 290+2), module, DelayPlusFx::BYPASS_LED));//Y=274
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 45+y_offset), module, DelayPlusFx::TIME_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 95+y_offset), module, DelayPlusFx::FEEDBACK_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 145+y_offset), module, DelayPlusFx::COLOR_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(16, 116), module, DelayPlusFx::TIME_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(80, 116), module, DelayPlusFx::FEEDBACK_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(16, 207), module, DelayPlusFx::COLOR_INPUT));
 		//DELAY SIGNAL SEND
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(20, 184+y_offset), module, DelayPlusFx::COLOR_SEND));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(46, 255), module, DelayPlusFx::COLOR_SEND));
 		//DELAY SIGNAL RETURN
-		addInput(createInput<as_PJ301MPort>(Vec(75, 184+y_offset), module, DelayPlusFx::COLOR_RETURN));
+		addInput(createInput<as_PJ301MPort>(Vec(80, 255), module, DelayPlusFx::COLOR_RETURN));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 220+y_offset), module, DelayPlusFx::MIX_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 310), module, DelayPlusFx::IN_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(80, 207), module, DelayPlusFx::MIX_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(16, 335), module, DelayPlusFx::IN_INPUT));
 		//OUTPUT
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(85, 310), module, DelayPlusFx::OUT_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(80, 335), module, DelayPlusFx::OUT_OUTPUT));
 
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(49, 320), module, DelayPlusFx::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(80, 289), module, DelayPlusFx::BYPASS_CV_INPUT));
 
 	}
 };

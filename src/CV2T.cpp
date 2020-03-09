@@ -193,46 +193,47 @@ struct Cv2TWidget : ModuleWidget {
 
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/CV2T.svg")));
-	
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
+
 		//SCREWS - SPECIAL SPACING FOR RACK WIDTH*4
 		addChild(createWidget<as_HexScrew>(Vec(0, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(0, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		const int gp_offset = 75;
+		const int gp_offset = 82;
 		//CV 2 TRIG 1
 		//SWITCH & LED
-		addParam(createParam<LEDBezel>(Vec(6, 101), module, Cv2T::TRIG_SWITCH_1 ));
-		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 103.2), module, Cv2T::TRIG_LED_1));
+		addParam(createParam<LEDBezel>(Vec(6, 86), module, Cv2T::TRIG_SWITCH_1 ));
+		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 88.2), module, Cv2T::TRIG_LED_1));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(18,60), module, Cv2T::CV_IN_1));
+		addInput(createInput<as_PJ301MPort>(Vec(18,45), module, Cv2T::CV_IN_1));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 100), module, Cv2T::TRIG_OUT_1));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 85), module, Cv2T::TRIG_OUT_1));
 		//CV 2 TRIG 2
 		//SWITCH & LED
-		addParam(createParam<LEDBezel>(Vec(6, 101+gp_offset*1), module, Cv2T::TRIG_SWITCH_2 ));
-		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 103.2+gp_offset*1), module, Cv2T::TRIG_LED_2));
+		addParam(createParam<LEDBezel>(Vec(6, 86+gp_offset*1), module, Cv2T::TRIG_SWITCH_2 ));
+		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 88.2+gp_offset*1), module, Cv2T::TRIG_LED_2));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(18,60+gp_offset*1), module, Cv2T::CV_IN_2));
+		addInput(createInput<as_PJ301MPort>(Vec(18,45+gp_offset*1), module, Cv2T::CV_IN_2));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 100+gp_offset*1), module, Cv2T::TRIG_OUT_2));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 85+gp_offset*1), module, Cv2T::TRIG_OUT_2));
 		//CV 2 TRIG 3
 		//SWITCH & LED
-		addParam(createParam<LEDBezel>(Vec(6, 101+gp_offset*2), module, Cv2T::TRIG_SWITCH_3 ));
-		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 103.2+gp_offset*2), module, Cv2T::TRIG_LED_3));
+		addParam(createParam<LEDBezel>(Vec(6, 86+gp_offset*2), module, Cv2T::TRIG_SWITCH_3 ));
+		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 88.2+gp_offset*2), module, Cv2T::TRIG_LED_3));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(18,60+gp_offset*2), module, Cv2T::CV_IN_3));
+		addInput(createInput<as_PJ301MPort>(Vec(18,45+gp_offset*2), module, Cv2T::CV_IN_3));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 100+gp_offset*2), module, Cv2T::TRIG_OUT_3));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 85+gp_offset*2), module, Cv2T::TRIG_OUT_3));
 		//CV 2 TRIG 4
 		//SWITCH & LED
-		addParam(createParam<LEDBezel>(Vec(6, 101+gp_offset*3), module, Cv2T::TRIG_SWITCH_4 ));
-		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 103.2+gp_offset*3), module, Cv2T::TRIG_LED_4));
+		addParam(createParam<LEDBezel>(Vec(6, 86+gp_offset*3), module, Cv2T::TRIG_SWITCH_4 ));
+		addChild(createLight<LedLight<RedLight>>(Vec(6+2.2, 88.2+gp_offset*3), module, Cv2T::TRIG_LED_4));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(18,60+gp_offset*3), module, Cv2T::CV_IN_4));
+		addInput(createInput<as_PJ301MPort>(Vec(18,45+gp_offset*3), module, Cv2T::CV_IN_4));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 100+gp_offset*3), module, Cv2T::TRIG_OUT_4));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(32, 85+gp_offset*3), module, Cv2T::TRIG_OUT_4));
 		
 	}
 };

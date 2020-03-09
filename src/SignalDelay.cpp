@@ -189,9 +189,9 @@ struct MsDelayDisplayWidget : TransparentWidget {
     std::stringstream to_display;   
     to_display << std::right  << std::setw(5) << *value;
 
-    Vec textPos = Vec(4.0f, 17.0f); 
+    Vec textPos = Vec(-4.0f, 17.0f); 
 
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -204,59 +204,59 @@ struct SignalDelayWidget : ModuleWidget {
 
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/SignalDelay.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		//DELAY 1
 		//MS DISPLAY 
 		
 		MsDelayDisplayWidget *display1 = new MsDelayDisplayWidget();
-		display1->box.pos = Vec(10,50);
-		display1->box.size = Vec(70, 20);
+		display1->box.pos = Vec(8,30);
+		display1->box.size = Vec(60, 20);
 		if (module) {
             display1->value = &module->lcd_tempo1;
         }
 		addChild(display1); 
 		
-		static const float posX[3] = {3,33,63};	
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//KNOBS
-		addParam(createParam<as_KnobBlack>(Vec(47, 77), module, SignalDelay::TIME_1_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 75), module, SignalDelay::TIME_1_PARAM));
 		//CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(posX[0]+5, 84), module, SignalDelay::TIME_1_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 118), module, SignalDelay::TIME_1_INPUT));
 		//INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(posX[0], 166), module, SignalDelay::IN_1_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 160), module, SignalDelay::IN_1_INPUT));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[1], 166), module, SignalDelay::SEND_1_OUTPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[2], 166), module, SignalDelay::OUT_1_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 115), module, SignalDelay::SEND_1_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 160), module, SignalDelay::OUT_1_OUTPUT));
 
 		//DELAY 2
 		//MS DISPLAY 
-		static const int mod_offset=160;
+		static const int mod_offset=174;
 		
 		MsDelayDisplayWidget *display2 = new MsDelayDisplayWidget();
-		display2->box.pos = Vec(10,44+mod_offset);
-		display2->box.size = Vec(70, 20);
+		display2->box.pos = Vec(8,30+mod_offset);
+		display2->box.size = Vec(60, 20);
 		if (module) {
             display2->value = &module->lcd_tempo2;
         }
 		addChild(display2); 
 		
 		//KNOBS
-		addParam(createParam<as_KnobBlack>(Vec(47, 71+mod_offset), module, SignalDelay::TIME_2_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 75+mod_offset), module, SignalDelay::TIME_2_PARAM));
 		//CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(posX[0]+5, 78+mod_offset), module, SignalDelay::TIME_2_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 118+mod_offset), module, SignalDelay::TIME_2_INPUT));
 		//INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(posX[0], 159+mod_offset), module, SignalDelay::IN_2_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 160+mod_offset), module, SignalDelay::IN_2_INPUT));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[1], 159+mod_offset), module, SignalDelay::SEND_2_OUTPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[2], 159+mod_offset), module, SignalDelay::OUT_2_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 115+mod_offset), module, SignalDelay::SEND_2_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 160+mod_offset), module, SignalDelay::OUT_2_OUTPUT));
 
 		//SEND MODE SWITCH THRU/DELAYED
-		addParam(createParam<as_CKSSH>(Vec(33, 131), module, SignalDelay::SWITCH_1_MODE));
-		addParam(createParam<as_CKSSH>(Vec(33, 125+mod_offset), module, SignalDelay::SWITCH_2_MODE));
+		addParam(createParam<as_CKSS>(Vec(58, 78), module, SignalDelay::SWITCH_1_MODE));
+		addParam(createParam<as_CKSS>(Vec(58, 78+mod_offset), module, SignalDelay::SWITCH_2_MODE));
 
 	}
 };

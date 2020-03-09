@@ -78,6 +78,7 @@ struct SineOscWidget : ModuleWidget {
 	SineOscWidget(SineOsc *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/SineOSC.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS - SPECIAL SPACING FOR RACK WIDTH*4
 		addChild(createWidget<as_HexScrew>(Vec(0, 0)));
@@ -87,10 +88,10 @@ struct SineOscWidget : ModuleWidget {
 		//LIGHT
 		addChild(createLight<SmallLight<RedLight>>(Vec(7, 57), module, SineOsc::FREQ_LIGHT));
 		//PARAMS
-		addParam(createParam<as_KnobBlack>(Vec(11, 60), module, SineOsc::FREQ_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(11, 50), module, SineOsc::FREQ_PARAM));
 
 		//BASE FREQ SWITCH
-		addParam(createParam<as_CKSSH>(Vec(18, 220), module, SineOsc::BASE_PARAM));
+		addParam(createParam<as_CKSSH>(Vec(18, 212), module, SineOsc::BASE_PARAM));
 		//INPUTS
 		addInput(createInput<as_PJ301MPort>(Vec(18, 260), module, SineOsc::FREQ_CV));
 		//OUTPUTS

@@ -101,7 +101,7 @@ struct BlankPanelSpecialWidget : ModuleWidget {
 
     struct Panel1Item : MenuItem{
 		BlankPanelSpecial *blank;
-		void onAction(const event::Action &e) override { blank->panel = 0; }
+		void onAction(event::Action &e) override { blank->panel = 0; }
 		void step() override {
 			rightText = (blank->panel == 0) ? "✔" : "";
 			MenuItem::step();
@@ -110,7 +110,7 @@ struct BlankPanelSpecialWidget : ModuleWidget {
 
 	struct Panel2Item : MenuItem{
 		BlankPanelSpecial *blank;
-		void onAction(const event::Action &e) override { blank->panel = 1; }
+		void onAction(event::Action &e) override { blank->panel = 1; }
 		void step() override {
 			rightText = (blank->panel == 1) ? "✔" : "";
 			MenuItem::step();
@@ -119,7 +119,7 @@ struct BlankPanelSpecialWidget : ModuleWidget {
 
 	struct Panel3Item : MenuItem{
 		BlankPanelSpecial *blank;
-		void onAction(const event::Action &e) override { blank->panel = 2; }
+		void onAction(event::Action &e) override { blank->panel = 2; }
 		void step() override {
 			rightText = (blank->panel == 2) ? "✔" : "";
 			MenuItem::step();
@@ -128,7 +128,7 @@ struct BlankPanelSpecialWidget : ModuleWidget {
 
 	struct Panel4Item : MenuItem{
 		BlankPanelSpecial *blank;
-		void onAction(const event::Action &e) override { blank->panel = 3; }
+		void onAction(event::Action &e) override { blank->panel = 3; }
 		void step() override {
 			rightText = (blank->panel == 3) ? "✔" : "";
 			MenuItem::step();
@@ -137,7 +137,7 @@ struct BlankPanelSpecialWidget : ModuleWidget {
 
 	struct Panel5Item : MenuItem{
 		BlankPanelSpecial *blank;
-		void onAction(const event::Action &e) override { blank->panel = 4; }
+		void onAction(event::Action &e) override { blank->panel = 4; }
 		void step() override {
 			rightText = (blank->panel == 4) ? "✔" : "";
 			MenuItem::step();

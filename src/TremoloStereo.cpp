@@ -242,6 +242,7 @@ struct TremoloStereoFxWidget : ModuleWidget {
 	TremoloStereoFxWidget(TremoloStereoFx *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/TremoloStereo.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -249,32 +250,32 @@ struct TremoloStereoFxWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//phase switch
-		addParam(createParam<as_CKSSwhite>(Vec(13, 100), module, TremoloStereoFx::INVERT_PARAM));
+		addParam(createParam<as_CKSSwhite>(Vec(15, 238), module, TremoloStereoFx::INVERT_PARAM));
 		//KNOBS  
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 60), module, TremoloStereoFx::WAVE_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 125), module, TremoloStereoFx::FREQ_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 190), module, TremoloStereoFx::BLEND_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 50), module, TremoloStereoFx::WAVE_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, TremoloStereoFx::FREQ_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, TremoloStereoFx::BLEND_PARAM));
 		//LIGHTS
 		addChild(createLight<SmallLight<YellowRedLight>>(Vec(39, 122), module, TremoloStereoFx::PHASE_POS_LIGHT));
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, TremoloStereoFx::BLEND_LIGHT));
 		//CV INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 67), module, TremoloStereoFx::WAVE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 132), module, TremoloStereoFx::FREQ_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 197), module, TremoloStereoFx::BLEND_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 89), module, TremoloStereoFx::WAVE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 89), module, TremoloStereoFx::FREQ_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 184), module, TremoloStereoFx::BLEND_CV_INPUT));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(15, 300), module, TremoloStereoFx::SIGNAL_INPUT_L));
-		addInput(createInput<as_PJ301MPort>(Vec(15, 330), module, TremoloStereoFx::SIGNAL_INPUT_R));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 291), module, TremoloStereoFx::SIGNAL_INPUT_L));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 325), module, TremoloStereoFx::SIGNAL_INPUT_R));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(50, 300), module, TremoloStereoFx::SIGNAL_OUTPUT_L));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(50, 330), module, TremoloStereoFx::SIGNAL_OUTPUT_R));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(54, 291), module, TremoloStereoFx::SIGNAL_OUTPUT_L));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(54, 325), module, TremoloStereoFx::SIGNAL_OUTPUT_R));
 		//RESET CV
-		addInput(createInput<as_PJ301MPort>(Vec(6, 259), module, TremoloStereoFx::RESET_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 238), module, TremoloStereoFx::RESET_CV_INPUT));
 
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(33.5, 259), module, TremoloStereoFx::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 184), module, TremoloStereoFx::BYPASS_CV_INPUT));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(61, 260), module, TremoloStereoFx::BYPASS_SWITCH ));
-		addChild(createLight<LedLight<RedLight>>(Vec(63.2, 262.2), module, TremoloStereoFx::BYPASS_LED));
+		addParam(createParam<LEDBezel>(Vec(55, 149), module, TremoloStereoFx::BYPASS_SWITCH ));
+		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2), module, TremoloStereoFx::BYPASS_LED));
 	
 	}
 };

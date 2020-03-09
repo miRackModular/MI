@@ -177,7 +177,7 @@ struct NumberDisplayWidget : TransparentWidget {
 
     Vec textPos = Vec(4.0f, 17.0f); 
 
-    NVGcolor textColor = nvgRGB(0xf0, 0x00, 0x00);
+    NVGcolor textColor = COLOR_WHITE;
     nvgFillColor(args.vg, textColor);
     nvgText(args.vg, textPos.x, textPos.y, to_display.str().c_str(), NULL);
   }
@@ -189,6 +189,7 @@ struct KillGateWidget : ModuleWidget {
     
     setModule(module);
     setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/KillGate.svg")));  
+    dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
     
   //SCREWS
     addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -218,7 +219,7 @@ struct KillGateWidget : ModuleWidget {
       addParam(createParam<LEDBezel>(Vec(11, 82), module, KillGate::RST_BUTTON1 ));
       addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3), module, KillGate::RESET_LIGHT1));
 
-      addParam(createParam<as_KnobBlackSnap>(Vec(43, 73), module, KillGate::COUNT_NUM_PARAM_1)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73), module, KillGate::COUNT_NUM_PARAM_1)); 
 
       addInput(createInput<as_PJ301MPort>(Vec(10, 125), module, KillGate::RESET_IN_1));
       addInput(createInput<as_PJ301MPort>(Vec(55, 125), module, KillGate::CLK_IN_1));
@@ -247,7 +248,7 @@ struct KillGateWidget : ModuleWidget {
       addParam(createParam<LEDBezel>(Vec(11, 82+ group_offset), module, KillGate::RST_BUTTON2 ));
       addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3+ group_offset), module, KillGate::RESET_LIGHT2));
 
-      addParam(createParam<as_KnobBlackSnap>(Vec(43, 73 + group_offset), module, KillGate::COUNT_NUM_PARAM_2)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73 + group_offset), module, KillGate::COUNT_NUM_PARAM_2)); 
 
       addInput(createInput<as_PJ301MPort>(Vec(10, 125 + group_offset), module, KillGate::RESET_IN_2));
       addInput(createInput<as_PJ301MPort>(Vec(55, 125 + group_offset), module, KillGate::CLK_IN_2));

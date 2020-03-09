@@ -134,42 +134,43 @@ struct QuadVCAWidget : ModuleWidget {
 
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/QuadVCA.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-		static const float posX[4] = {13,39,65,91};
+		static const float posX[4] = {11,37,63,89};
 		//SLIDERS
-		addParam(createParam<as_SlidePot>(Vec(posX[0]-3, 70), module, QuadVCA::GAIN1_PARAM));
-		addParam(createParam<as_SlidePot>(Vec(posX[1]-3, 70), module, QuadVCA::GAIN2_PARAM));
-		addParam(createParam<as_SlidePot>(Vec(posX[2]-3, 70), module, QuadVCA::GAIN3_PARAM));
-		addParam(createParam<as_SlidePot>(Vec(posX[3]-3, 70), module, QuadVCA::GAIN4_PARAM));
+		addParam(createParam<as_SlidePot>(Vec(posX[0], 55), module, QuadVCA::GAIN1_PARAM));
+		addParam(createParam<as_SlidePot>(Vec(posX[1], 55), module, QuadVCA::GAIN2_PARAM));
+		addParam(createParam<as_SlidePot>(Vec(posX[2], 55), module, QuadVCA::GAIN3_PARAM));
+		addParam(createParam<as_SlidePot>(Vec(posX[3], 55), module, QuadVCA::GAIN4_PARAM));
 		//MODE SWITCHES
-		addParam(createParam<as_CKSS>(Vec(posX[0], 190), module, QuadVCA::MODE1_PARAM));
-		addParam(createParam<as_CKSS>(Vec(posX[1], 190), module, QuadVCA::MODE2_PARAM));
-		addParam(createParam<as_CKSS>(Vec(posX[2], 190), module, QuadVCA::MODE3_PARAM));
-		addParam(createParam<as_CKSS>(Vec(posX[3], 190), module, QuadVCA::MODE4_PARAM));
+		addParam(createParam<as_CKSS>(Vec(posX[0]+1, 190), module, QuadVCA::MODE1_PARAM));
+		addParam(createParam<as_CKSS>(Vec(posX[1]+1, 190), module, QuadVCA::MODE2_PARAM));
+		addParam(createParam<as_CKSS>(Vec(posX[2]+1, 190), module, QuadVCA::MODE3_PARAM));
+		addParam(createParam<as_CKSS>(Vec(posX[3]+1, 190), module, QuadVCA::MODE4_PARAM));
 		//CV INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(posX[0]-4, 217), module, QuadVCA::GAIN1_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(posX[1]-4, 217), module, QuadVCA::GAIN2_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(posX[2]-4, 217), module, QuadVCA::GAIN3_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(posX[3]-4, 217), module, QuadVCA::GAIN4_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[0]-2, 219), module, QuadVCA::GAIN1_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[1]-2, 219), module, QuadVCA::GAIN2_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[2]-2, 219), module, QuadVCA::GAIN3_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[3]-2, 219), module, QuadVCA::GAIN4_CV_INPUT));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(posX[0]-4, 260), module, QuadVCA::IN1_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(posX[1]-4, 260), module, QuadVCA::IN2_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(posX[2]-4, 260), module, QuadVCA::IN3_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(posX[3]-4, 260), module, QuadVCA::IN4_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[0]-2, 260), module, QuadVCA::IN1_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[1]-2, 260), module, QuadVCA::IN2_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[2]-2, 260), module, QuadVCA::IN3_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(posX[3]-2, 260), module, QuadVCA::IN4_INPUT));
 		//LEDS
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[0]+5, 288), module, QuadVCA::GAIN1_LIGHT));
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[1]+5, 288), module, QuadVCA::GAIN2_LIGHT));
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[2]+5, 288), module, QuadVCA::GAIN3_LIGHT));
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[3]+5, 288), module, QuadVCA::GAIN4_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[0]+7, 288), module, QuadVCA::GAIN1_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[1]+7, 288), module, QuadVCA::GAIN2_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[2]+7, 288), module, QuadVCA::GAIN3_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[3]+7, 288), module, QuadVCA::GAIN4_LIGHT));
 		//OUTPUTS
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[0]-4, 310), module, QuadVCA::OUT1_OUTPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[1]-4, 310), module, QuadVCA::OUT2_OUTPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[2]-4, 310), module, QuadVCA::OUT3_OUTPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[3]-4, 310), module, QuadVCA::OUT4_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[0]-2, 310), module, QuadVCA::OUT1_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[1]-2, 310), module, QuadVCA::OUT2_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[2]-2, 310), module, QuadVCA::OUT3_OUTPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(posX[3]-2, 310), module, QuadVCA::OUT4_OUTPUT));
 
 	}
 };

@@ -172,32 +172,33 @@ struct ReverbFxWidget : ModuleWidget {
 		
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Reverb.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//KNOBS  
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 60), module, ReverbFx::DECAY_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 125), module, ReverbFx::DAMP_PARAM));
-		addParam(createParam<as_FxKnobWhite>(Vec(43, 190), module, ReverbFx::BLEND_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 50), module, ReverbFx::DECAY_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, ReverbFx::DAMP_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, ReverbFx::BLEND_PARAM));
 		//LIGHTS
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 57), module, ReverbFx::DECAY_LIGHT));
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 122), module, ReverbFx::DAMP_LIGHT));
 		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, ReverbFx::BLEND_LIGHT));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(55, 260), module, ReverbFx::BYPASS_SWITCH ));
-		addChild(createLight<LedLight<RedLight>>(Vec(57.2, 262), module, ReverbFx::BYPASS_LED));
+		addParam(createParam<LEDBezel>(Vec(55, 149), module, ReverbFx::BYPASS_SWITCH ));
+		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2), module, ReverbFx::BYPASS_LED));
 		//INS/OUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 310), module, ReverbFx::SIGNAL_INPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 310), module, ReverbFx::SIGNAL_OUTPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 291), module, ReverbFx::SIGNAL_INPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(54, 291), module, ReverbFx::SIGNAL_OUTPUT));
 		//CV INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 67), module, ReverbFx::DECAY_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 132), module, ReverbFx::DAMP_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(10, 197), module, ReverbFx::BLEND_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 89), module, ReverbFx::DECAY_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 89), module, ReverbFx::DAMP_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 184), module, ReverbFx::BLEND_CV_INPUT));
 
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(10, 259), module, ReverbFx::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(54, 184), module, ReverbFx::BYPASS_CV_INPUT));
 		
 	}
 };

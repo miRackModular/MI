@@ -99,6 +99,7 @@ struct SawOscWidget : ModuleWidget {
 	SawOscWidget(SawOsc *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/SawOSC.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 	
 		//SCREWS - SPECIAL SPACING FOR RACK WIDTH*4
 		addChild(createWidget<as_HexScrew>(Vec(0, 0)));
@@ -108,13 +109,13 @@ struct SawOscWidget : ModuleWidget {
 		//LIGHT
 		addChild(createLight<SmallLight<RedLight>>(Vec(7, 57), module, SawOsc::FREQ_LIGHT));
 		//PARAMS
-		addParam(createParam<as_KnobBlack>(Vec(11, 60), module, SawOsc::PITCH_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(11, 120), module, SawOsc::PW_PARAM));
+		addParam(createParam<as_KnobBlack>(Vec(11, 50), module, SawOsc::PITCH_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(15, 119), module, SawOsc::PW_PARAM));
 
-			//BASE FREQ SWITCH
-		addParam(createParam<as_CKSSH>(Vec(18, 220), module, SawOsc::BASE_PARAM));
+		//BASE FREQ SWITCH
+		addParam(createParam<as_CKSSH>(Vec(18, 212), module, SawOsc::BASE_PARAM));
 		//INPUTS
-		addInput(createInput<as_PJ301MPort>(Vec(18, 180), module, SawOsc::PW_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(18, 158), module, SawOsc::PW_INPUT));
 		addInput(createInput<as_PJ301MPort>(Vec(18, 260), module, SawOsc::PITCH_INPUT));
 		//OUTPUTS
 		addOutput(createOutput<as_PJ301MPortGold>(Vec(18, 310), module, SawOsc::OSC_OUTPUT));

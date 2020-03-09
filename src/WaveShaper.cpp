@@ -1,5 +1,5 @@
 //**************************************************************************************
-//WaveSahper module for VCV Rack by Alfredo Santamaria - AS - https://github.com/AScustomWorks/AS
+//WaveShaper module for VCV Rack by Alfredo Santamaria - AS - https://github.com/AScustomWorks/AS
 //
 //Code taken from HetrickCV plugins by Michael Hetrick https://github.com/mhetrick/hetrickcv
 //**************************************************************************************
@@ -161,6 +161,7 @@ struct WaveShaperWidget : ModuleWidget {
 
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/WaveShaper.svg")));
+		dynamic_cast<SVGPanel*>(panel)->setBorderColor(nvgRGB(0x36, 0x61, 0x7c));
 
 		//SCREWS
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, 0)));
@@ -168,25 +169,25 @@ struct WaveShaperWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//PARAMS
-		addParam(createParam<as_FxKnobBlack>(Vec(43, 60), module, WaveShaper::SHAPE_PARAM));
-		addParam(createParam<as_FxKnobBlack>(Vec(43, 125), module, WaveShaper::SCALE_PARAM));
+		addParam(createParam<as_FxKnobBlack>(Vec(43, 50), module, WaveShaper::SHAPE_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(8, 119), module, WaveShaper::SCALE_PARAM));
 		//CV INPUT SCALE
-		addInput(createInput<as_PJ301MPort>(Vec(10, 110), module, WaveShaper::SCALE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 158), module, WaveShaper::SCALE_CV_INPUT));
 		//RANGE SWITCH
-		addParam(createParam<as_CKSSH>(Vec(33, 220), module, WaveShaper::RANGE_PARAM));
+		addParam(createParam<as_CKSSH>(Vec(55, 219), module, WaveShaper::RANGE_PARAM));
 		//BYPASS SWITCH
-		addParam(createParam<LEDBezel>(Vec(55, 260), module, WaveShaper::BYPASS_SWITCH ));
-		addChild(createLight<LedLight<RedLight>>(Vec(57.2, 262), module, WaveShaper::BYPASS_LED));
+		addParam(createParam<LEDBezel>(Vec(12, 265), module, WaveShaper::BYPASS_SWITCH ));
+		addChild(createLight<LedLight<RedLight>>(Vec(12+2.2, 265+2), module, WaveShaper::BYPASS_LED));
 		//INS/OUTS
-		addInput(createInput<as_PJ301MPort>(Vec(10, 310), module, WaveShaper::INPUT));
-		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 310), module, WaveShaper::OUTPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 320), module, WaveShaper::INPUT));
+		addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 320), module, WaveShaper::OUTPUT));
 		//BYPASS CV INPUT
-		addInput(createInput<as_PJ301MPort>(Vec(10, 259), module, WaveShaper::BYPASS_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(55, 264), module, WaveShaper::BYPASS_CV_INPUT));
 		//CV INPUTS		
-		addInput(createInput<as_PJ301MPort>(Vec(10, 67), module, WaveShaper::SHAPE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(33, 182), module, WaveShaper::RANGE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 57), module, WaveShaper::SHAPE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 158), module, WaveShaper::RANGE_CV_INPUT));
 		//wave mod input
-		addInput(createInput<as_PJ301MPort>(Vec(10, 152), module, WaveShaper::WAVE_MOD_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(55, 158), module, WaveShaper::WAVE_MOD_INPUT));
 
 	}
 };
