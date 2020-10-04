@@ -348,17 +348,17 @@ struct Mixer8chWidget : ModuleWidget{
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//PAN KNOBS
 		static const float columnPos[8] = {33,73,113,153, 193, 233, 273, 313};
-		static const float panPosY = 180;
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[0]-5, panPosY), module, Mixer8ch::CH1_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[1]-5, panPosY), module, Mixer8ch::CH2_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[2]-5, panPosY), module, Mixer8ch::CH3_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[3]-5, panPosY), module, Mixer8ch::CH4_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[4]-5, panPosY), module, Mixer8ch::CH5_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[5]-5, panPosY), module, Mixer8ch::CH6_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[6]-5, panPosY), module, Mixer8ch::CH7_PAN_PARAM));
-		addParam(createParam<as_KnobBlack>(Vec(columnPos[7]-5, panPosY), module, Mixer8ch::CH8_PAN_PARAM));
+		static const float panPosY = 183;
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[0]-3, panPosY), module, Mixer8ch::CH1_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[1]-3, panPosY), module, Mixer8ch::CH2_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[2]-3, panPosY), module, Mixer8ch::CH3_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[3]-3, panPosY), module, Mixer8ch::CH4_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[4]-3, panPosY), module, Mixer8ch::CH5_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[5]-3, panPosY), module, Mixer8ch::CH6_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[6]-3, panPosY), module, Mixer8ch::CH7_PAN_PARAM));
+		addParam(createParam<as_KnobSmall>(Vec(columnPos[7]-3, panPosY), module, Mixer8ch::CH8_PAN_PARAM));
 		//VOLUME FADERS
-		static const float volPosY = 223;
+		static const float volPosY = 227;
 		addParam(createParam<as_FaderPot>(Vec(columnPos[0]+2, volPosY), module, Mixer8ch::CH1_PARAM));
 		addParam(createParam<as_FaderPot>(Vec(columnPos[1]+2, volPosY), module, Mixer8ch::CH2_PARAM));
 		addParam(createParam<as_FaderPot>(Vec(columnPos[2]+2, volPosY), module, Mixer8ch::CH3_PARAM));
@@ -369,22 +369,22 @@ struct Mixer8chWidget : ModuleWidget{
 		addParam(createParam<as_FaderPot>(Vec(columnPos[7]+2, volPosY), module, Mixer8ch::CH8_PARAM));
 		//MUTES
 		static const float mutePosY = 310;
-		addParam(createParam<LEDBezel>(Vec(columnPos[0]+3, mutePosY), module, Mixer8ch::CH1MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[0]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT1));
-		addParam(createParam<LEDBezel>(Vec(columnPos[1]+3, mutePosY), module, Mixer8ch::CH2MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[1]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT2));
-		addParam(createParam<LEDBezel>(Vec(columnPos[2]+3, mutePosY), module, Mixer8ch::CH3MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[2]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT3));
-		addParam(createParam<LEDBezel>(Vec(columnPos[3]+3, mutePosY), module, Mixer8ch::CH4MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[3]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT4));
-		addParam(createParam<LEDBezel>(Vec(columnPos[4]+3, mutePosY), module, Mixer8ch::CH5MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[4]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT5));
-		addParam(createParam<LEDBezel>(Vec(columnPos[5]+3, mutePosY), module, Mixer8ch::CH6MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[5]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT6));
-		addParam(createParam<LEDBezel>(Vec(columnPos[6]+3, mutePosY), module, Mixer8ch::CH7MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[6]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT7));
-		addParam(createParam<LEDBezel>(Vec(columnPos[7]+3, mutePosY), module, Mixer8ch::CH8MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[7]+5.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT8));
+		addParam(createParam<LEDBezel>(Vec(columnPos[0]+1, mutePosY), module, Mixer8ch::CH1MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[0]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT1));
+		addParam(createParam<LEDBezel>(Vec(columnPos[1]+1, mutePosY), module, Mixer8ch::CH2MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[1]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT2));
+		addParam(createParam<LEDBezel>(Vec(columnPos[2]+1, mutePosY), module, Mixer8ch::CH3MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[2]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT3));
+		addParam(createParam<LEDBezel>(Vec(columnPos[3]+1, mutePosY), module, Mixer8ch::CH4MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[3]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT4));
+		addParam(createParam<LEDBezel>(Vec(columnPos[4]+1, mutePosY), module, Mixer8ch::CH5MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[4]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT5));
+		addParam(createParam<LEDBezel>(Vec(columnPos[5]+1, mutePosY), module, Mixer8ch::CH6MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[5]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT6));
+		addParam(createParam<LEDBezel>(Vec(columnPos[6]+1, mutePosY), module, Mixer8ch::CH7MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[6]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT7));
+		addParam(createParam<LEDBezel>(Vec(columnPos[7]+1, mutePosY), module, Mixer8ch::CH8MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(columnPos[7]+3.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT8));
 		//PORTS
 		static const float portsY[4] = {60,90,120,150};
 		addInput(createInput<as_PJ301MPort>(Vec(columnPos[0], portsY[0]), module, Mixer8ch::CH1_INPUT));
@@ -432,8 +432,8 @@ struct Mixer8chWidget : ModuleWidget{
 		addOutput(createOutput<as_PJ301MPortGold>(Vec(356, portsY[1]), module, Mixer8ch::MIX_OUTPUTR));
 		addInput(createInput<as_PJ301MPort>(Vec(356, portsY[3]), module, Mixer8ch::MIX_CV_INPUT));
 		addParam(createParam<as_FaderPot>(Vec(356, volPosY), module, Mixer8ch::MIX_PARAM));
-		addParam(createParam<LEDBezel>(Vec(356, mutePosY), module, Mixer8ch::MASTER_MUTE ));
-		addChild(createLight<LedLight<RedLight>>(Vec(356+2.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT_MASTER));
+		addParam(createParam<LEDBezel>(Vec(356-1, mutePosY), module, Mixer8ch::MASTER_MUTE ));
+		addChild(createLight<LedLight<RedLight>>(Vec(356+1.2, mutePosY+2), module, Mixer8ch::MUTE_LIGHT_MASTER));
 
 		//LINK
 		addInput(createInput<as_PJ301MPort>(Vec(columnPos[0], 30), module, Mixer8ch::LINK_L));

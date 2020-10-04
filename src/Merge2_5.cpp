@@ -75,20 +75,20 @@ struct Merge2_5Widget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
 		//INPUTS 
-		addInput(createInput<as_PJ301MPort>(Vec(8, 75), module, Merge2_5::INPUT11));
-		addInput(createInput<as_PJ301MPort>(Vec(43, 75), module, Merge2_5::INPUT21));
+		addInput(createInput<as_PJ301MPort>(Vec(8, 65), module, Merge2_5::INPUT11));
+		addInput(createInput<as_PJ301MPort>(Vec(43, 65), module, Merge2_5::INPUT21));
 		
-		addInput(createInput<as_PJ301MPort>(Vec(8, 120), module, Merge2_5::INPUT12));
-		addInput(createInput<as_PJ301MPort>(Vec(43, 120), module, Merge2_5::INPUT22));
+		addInput(createInput<as_PJ301MPort>(Vec(8, 110), module, Merge2_5::INPUT12));
+		addInput(createInput<as_PJ301MPort>(Vec(43, 110), module, Merge2_5::INPUT22));
 
-		addInput(createInput<as_PJ301MPort>(Vec(8, 165), module, Merge2_5::INPUT13));
-		addInput(createInput<as_PJ301MPort>(Vec(43, 165), module, Merge2_5::INPUT23));
+		addInput(createInput<as_PJ301MPort>(Vec(8, 155), module, Merge2_5::INPUT13));
+		addInput(createInput<as_PJ301MPort>(Vec(43, 155), module, Merge2_5::INPUT23));
 
-		addInput(createInput<as_PJ301MPort>(Vec(8, 210), module, Merge2_5::INPUT14));
-		addInput(createInput<as_PJ301MPort>(Vec(43, 210), module, Merge2_5::INPUT24));
+		addInput(createInput<as_PJ301MPort>(Vec(8, 200), module, Merge2_5::INPUT14));
+		addInput(createInput<as_PJ301MPort>(Vec(43, 200), module, Merge2_5::INPUT24));
 
-		addInput(createInput<as_PJ301MPort>(Vec(8, 255), module, Merge2_5::INPUT15));
-		addInput(createInput<as_PJ301MPort>(Vec(43, 255), module, Merge2_5::INPUT25));
+		addInput(createInput<as_PJ301MPort>(Vec(8, 245), module, Merge2_5::INPUT15));
+		addInput(createInput<as_PJ301MPort>(Vec(43, 245), module, Merge2_5::INPUT25));
 
 		//OUTPUTS
 		addOutput(createOutput<as_PJ301MPortGold>(Vec(8, 310), module, Merge2_5::OUTPUT1));

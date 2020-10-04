@@ -154,7 +154,7 @@ struct SEQ16 : Module {
 				index = 0;
 			}
 			stepLights[index] = 1.0f;
-			gatePulse.trigger(1e-3);
+			gatePulse.trigger();
 		}
 
 		resetLight -= resetLight / lightLambda * args.sampleTime;

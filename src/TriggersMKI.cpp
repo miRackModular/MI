@@ -90,7 +90,7 @@ struct TriggersMKI: Module {
         if (BtnTrigger.process(params[MOMENTARY_SWITCH].getValue())) {
             resetLight = 1.0;
             if (!running) {
-                triggerPulse.trigger(1e-3f);
+                triggerPulse.trigger();
 
             }
         }
@@ -199,11 +199,11 @@ struct TriggersMKIWidget : ModuleWidget {
         //SWITCHES
         static const float led_offset = 3.3;
         static const float led_center = 15;
-        addParam(createParam<BigLEDBezel>(Vec(led_center, 182), module, TriggersMKI::RUN_SWITCH));
-        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 182+led_offset), module, TriggersMKI::RUN_LED));
+        addParam(createParam<BigLEDBezel>(Vec(led_center, 192), module, TriggersMKI::RUN_SWITCH));
+        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 192+led_offset), module, TriggersMKI::RUN_LED));
 
-        addParam(createParam<BigLEDBezel>(Vec(led_center, 262), module, TriggersMKI::MOMENTARY_SWITCH));
-        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 262+led_offset), module, TriggersMKI::MOMENTARY_LED));
+        addParam(createParam<BigLEDBezel>(Vec(led_center, 272), module, TriggersMKI::MOMENTARY_SWITCH));
+        addChild(createLight<GiantLight<RedLight>>(Vec(led_center+led_offset, 272+led_offset), module, TriggersMKI::MOMENTARY_LED));
 
         //PORTS
         addInput(createInput<as_PJ301MPort>(Vec(10, 145), module, TriggersMKI::CV_RUN_INPUT));

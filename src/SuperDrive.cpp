@@ -184,9 +184,9 @@ struct SuperDriveFxWidget : ModuleWidget {
 		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, SuperDriveFx::TONE_PARAM));
 		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, SuperDriveFx::OUTPUT_GAIN_PARAM));
 		//LIGHTS
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 57), module, SuperDriveFx::DRIVE_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 122), module, SuperDriveFx::TONE_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, SuperDriveFx::GAIN_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 81.5), module, SuperDriveFx::DRIVE_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(73, 81.5), module, SuperDriveFx::TONE_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 176.5), module, SuperDriveFx::GAIN_LIGHT));
 		//BYPASS SWITCH
 		addParam(createParam<LEDBezel>(Vec(55, 149), module, SuperDriveFx::BYPASS_SWITCH ));
 		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2.2), module, SuperDriveFx::BYPASS_LED));

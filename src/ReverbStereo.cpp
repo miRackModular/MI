@@ -206,9 +206,9 @@ struct ReverbStereoFxWidget : ModuleWidget {
 		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, ReverbStereoFx::DAMP_PARAM));
 		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, ReverbStereoFx::BLEND_PARAM));
 		//LIGHTS
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 57), module, ReverbStereoFx::DECAY_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 122), module, ReverbStereoFx::DAMP_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, ReverbStereoFx::BLEND_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 81.5), module, ReverbStereoFx::DECAY_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(73, 81.5), module, ReverbStereoFx::DAMP_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 176.5), module, ReverbStereoFx::BLEND_LIGHT));
 		//BYPASS SWITCH
 		addParam(createParam<LEDBezel>(Vec(55, 149), module, ReverbStereoFx::BYPASS_SWITCH ));
 		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2), module, ReverbStereoFx::BYPASS_LED));

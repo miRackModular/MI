@@ -199,7 +199,7 @@ struct KillGateWidget : ModuleWidget {
     // counter 1
     //COUNT DISPLAY
       NumberDisplayWidget *display1 = new NumberDisplayWidget();
-      display1->box.pos = Vec(9,50);
+      display1->box.pos = Vec(10,30);
       display1->box.size = Vec(30, 20);
       if (module) {
         display1->value = &module->count1;
@@ -207,30 +207,30 @@ struct KillGateWidget : ModuleWidget {
       addChild(display1);
     //KillGate DISPLAY  
       NumberDisplayWidget *display2 = new NumberDisplayWidget();
-      display2->box.pos = Vec(49,50);
+      display2->box.pos = Vec(50,30);
       display2->box.size = Vec(30, 20);
       if (module) {
         display2->value = &module->count_limit1;
       }
       addChild(display2);
 
-    int group_offset = 160;
+    int group_offset = 178;
 
-      addParam(createParam<LEDBezel>(Vec(11, 82), module, KillGate::RST_BUTTON1 ));
-      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3), module, KillGate::RESET_LIGHT1));
+      addParam(createParam<LEDBezel>(Vec(11, 69), module, KillGate::RST_BUTTON1 ));
+      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 69+2.2), module, KillGate::RESET_LIGHT1));
 
-      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73), module, KillGate::COUNT_NUM_PARAM_1)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(50, 57), module, KillGate::COUNT_NUM_PARAM_1)); 
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 125), module, KillGate::RESET_IN_1));
-      addInput(createInput<as_PJ301MPort>(Vec(55, 125), module, KillGate::CLK_IN_1));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 107), module, KillGate::RESET_IN_1));
+      addInput(createInput<as_PJ301MPort>(Vec(55, 107), module, KillGate::CLK_IN_1));
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 170), module, KillGate::INPUT_1));
-      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 170), module, KillGate::OUTPUT_1));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 153), module, KillGate::INPUT_1));
+      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 153), module, KillGate::OUTPUT_1));
     
     // counter 2
     //COUNT DISPLAY
       NumberDisplayWidget *display3 = new NumberDisplayWidget();
-      display3->box.pos = Vec(9,50 + group_offset);
+      display3->box.pos = Vec(10,30 + group_offset);
       display3->box.size = Vec(30, 20);
       if (module) {
         display3->value = &module->count_2;
@@ -238,23 +238,23 @@ struct KillGateWidget : ModuleWidget {
       addChild(display3);
     //KillGate DISPLAY  
       NumberDisplayWidget *display4 = new NumberDisplayWidget();
-      display4->box.pos = Vec(49,50 + group_offset);
+      display4->box.pos = Vec(50,30 + group_offset);
       display4->box.size = Vec(30, 20);
       if (module) {
         display4->value = &module->count_limit_2;
       }
       addChild(display4);
 
-      addParam(createParam<LEDBezel>(Vec(11, 82+ group_offset), module, KillGate::RST_BUTTON2 ));
-      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3+ group_offset), module, KillGate::RESET_LIGHT2));
+      addParam(createParam<LEDBezel>(Vec(11, 69+ group_offset), module, KillGate::RST_BUTTON2 ));
+      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 69+2.2+ group_offset), module, KillGate::RESET_LIGHT2));
 
-      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73 + group_offset), module, KillGate::COUNT_NUM_PARAM_2)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(50, 57 + group_offset), module, KillGate::COUNT_NUM_PARAM_2)); 
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 125 + group_offset), module, KillGate::RESET_IN_2));
-      addInput(createInput<as_PJ301MPort>(Vec(55, 125 + group_offset), module, KillGate::CLK_IN_2));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 107 + group_offset), module, KillGate::RESET_IN_2));
+      addInput(createInput<as_PJ301MPort>(Vec(55, 107 + group_offset), module, KillGate::CLK_IN_2));
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 170 + group_offset), module, KillGate::INPUT_2));
-      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 170 + group_offset), module, KillGate::OUTPUT_2));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 153 + group_offset), module, KillGate::INPUT_2));
+      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 153 + group_offset), module, KillGate::OUTPUT_2));
   
   }
 };

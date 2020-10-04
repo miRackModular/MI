@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#define SR engineGetSampleRate()
+#define SR api0::engineGetSampleRate()
 #define F_PI M_PI
 
 class Phaser{
@@ -254,9 +254,9 @@ struct PhaserFxWidget : ModuleWidget {
 		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, PhaserFx::FBK_PARAM));
 		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, PhaserFx::DEPTH_PARAM));
 		//LIGHTS
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 57), module, PhaserFx::RATE_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 122), module, PhaserFx::FBK_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, PhaserFx::DEPTH_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 81.5), module, PhaserFx::RATE_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(73, 81.5), module, PhaserFx::FBK_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 176.5), module, PhaserFx::DEPTH_LIGHT));
 		//BYPASS SWITCH
 		addParam(createParam<LEDBezel>(Vec(55, 149), module, PhaserFx::BYPASS_SWITCH ));
 		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2), module, PhaserFx::BYPASS_LED));

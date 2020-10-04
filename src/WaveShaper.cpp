@@ -185,7 +185,7 @@ struct WaveShaperWidget : ModuleWidget {
 		addInput(createInput<as_PJ301MPort>(Vec(55, 264), module, WaveShaper::BYPASS_CV_INPUT));
 		//CV INPUTS		
 		addInput(createInput<as_PJ301MPort>(Vec(11, 57), module, WaveShaper::SHAPE_CV_INPUT));
-		addInput(createInput<as_PJ301MPort>(Vec(11, 158), module, WaveShaper::RANGE_CV_INPUT));
+		addInput(createInput<as_PJ301MPort>(Vec(11, 216), module, WaveShaper::RANGE_CV_INPUT));
 		//wave mod input
 		addInput(createInput<as_PJ301MPort>(Vec(55, 158), module, WaveShaper::WAVE_MOD_INPUT));
 

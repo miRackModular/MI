@@ -65,7 +65,7 @@ struct MonoVUmeterWidget : ModuleWidget {
 		// LEFT COLUMN LEDs
 		static const float ledCol = 11;
 		static const float offsetY = 12;
-		static const float startY = 66;
+		static const float startY = 56;
 			addChild(createLight<MeterLight<RedLight>>(Vec(ledCol, startY + offsetY * 0), module, MonoVUmeter::METER_LIGHT + 0));
 			addChild(createLight<MeterLight<RedLight>>(Vec(ledCol, startY + offsetY * 1), module, MonoVUmeter::METER_LIGHT + 1));
 			addChild(createLight<MeterLight<RedLight>>(Vec(ledCol, startY + offsetY * 2), module, MonoVUmeter::METER_LIGHT + 2));

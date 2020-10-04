@@ -258,9 +258,9 @@ struct as_PJ301MPortGold : app::SvgPort {
 
 struct as_SlidePot : app::SvgSlider {
 	as_SlidePot() {
-		Vec margin = Vec(4, 4);
-		maxHandlePos = Vec(-2, -3).plus(margin);
-		minHandlePos = Vec(-2, 93).plus(margin);
+		Vec margin = Vec(2.5, 2.5);
+		maxHandlePos = Vec(-3, -3).plus(margin);
+		minHandlePos = Vec(-3, 93).plus(margin);
 		setBackgroundSvg(APP->window->loadSvg(asset::plugin(pluginInstance,"res/as-SlidePot.svg")));
 		background->wrap();
 		background->box.pos = margin;
@@ -272,9 +272,9 @@ struct as_SlidePot : app::SvgSlider {
 
 struct as_FaderPot : app::SvgSlider {
 	as_FaderPot() {
-		Vec margin = Vec(4, 4);
-		maxHandlePos = Vec(-2, -3).plus(margin);
-		minHandlePos = Vec(-2, 63).plus(margin);
+		Vec margin = Vec(2.5, 2.5);
+		maxHandlePos = Vec(-3, -3).plus(margin);
+		minHandlePos = Vec(-3, 63).plus(margin);
 		setBackgroundSvg(APP->window->loadSvg(asset::plugin(pluginInstance,"res/as-FaderPot.svg")));
 		background->wrap();
 		background->box.pos = margin;

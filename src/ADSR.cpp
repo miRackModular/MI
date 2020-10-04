@@ -122,10 +122,10 @@ struct ADSRWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		
 		static const float posX[4] = {13.0f,39.0f,65.0f,91.0f};
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[0]+6, 74), module, ADSR::ATTACK_LIGHT));
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[1]+6, 74), module, ADSR::DECAY_LIGHT));
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[2]+6, 74), module, ADSR::SUSTAIN_LIGHT));
-		addChild(createLight<SmallLight<RedLight>>(Vec(posX[3]+6, 74), module, ADSR::RELEASE_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[0]+4, 74), module, ADSR::ATTACK_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[1]+4, 74), module, ADSR::DECAY_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[2]+4, 74), module, ADSR::SUSTAIN_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(posX[3]+4, 74), module, ADSR::RELEASE_LIGHT));
 
 		addParam(createParam<as_SlidePot>(Vec(posX[0]-3, 90), module, ADSR::ATTACK_PARAM));
 		addParam(createParam<as_SlidePot>(Vec(posX[1]-3, 90), module, ADSR::DECAY_PARAM));

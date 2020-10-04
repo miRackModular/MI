@@ -86,9 +86,9 @@ struct SineOscWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(0, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//LIGHT
-		addChild(createLight<SmallLight<RedLight>>(Vec(7, 57), module, SineOsc::FREQ_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(44.5, 39), module, SineOsc::FREQ_LIGHT));
 		//PARAMS
-		addParam(createParam<as_KnobSmall>(Vec(11, 50), module, SineOsc::FREQ_PARAM));
+		addParam(createParam<as_KnobBlack>(Vec(11, 50), module, SineOsc::FREQ_PARAM));
 
 		//BASE FREQ SWITCH
 		addParam(createParam<as_CKSSH>(Vec(18, 212), module, SineOsc::BASE_PARAM));

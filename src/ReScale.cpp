@@ -121,10 +121,10 @@ struct ReScaleWidget : ModuleWidget {
         addChild(createWidget<as_HexScrew>(Vec(0, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
         addChild(createWidget<as_HexScrew>(Vec(box.size.x - RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
         //PORTS
-        addInput(createInput<as_PJ301MPort>(Vec(18, 65), module, ReScale::INPUT_0));
-        addInput(createInput<as_PJ301MPort>(Vec(18, 105), module, ReScale::INPUT_1));
-        addInput(createInput<as_PJ301MPort>(Vec(18, 145), module, ReScale::INPUT_2));
-        addInput(createInput<as_PJ301MPort>(Vec(18, 185), module, ReScale::INPUT_3));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 45), module, ReScale::INPUT_0));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 89), module, ReScale::INPUT_1));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 133), module, ReScale::INPUT_2));
+        addInput(createInput<as_PJ301MPort>(Vec(18, 177), module, ReScale::INPUT_3));
 
         addParam(createParam<as_KnobBlackSnap4>(Vec(11, 236), module, ReScale::CONVERT_PARAM));
 

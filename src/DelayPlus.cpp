@@ -269,7 +269,7 @@ struct DelayPlusFxWidget : ModuleWidget {
 
 		//MS DISPLAY 
 		MsDisplayWidget *display = new MsDisplayWidget();
-		display->box.pos = Vec(25,32);
+		display->box.pos = Vec(25,30);
 		display->box.size = Vec(70, 20);
 		if (module) {
             display->value = &module->lcd_tempo;

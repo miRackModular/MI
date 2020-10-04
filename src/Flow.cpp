@@ -159,7 +159,7 @@ struct FlowWidget : ModuleWidget {
 
         static const float led_offset = 3.3;
         static const float led_center = 15;
-        static const float y_offset = 165;
+        static const float y_offset = 170;
         //TRIGGER 1
         //SWITCH
         addParam(createParam<BigLEDBezel>(Vec(led_center, 50), module, Flow::SWITCH_1));
@@ -167,8 +167,8 @@ struct FlowWidget : ModuleWidget {
         //PORTS
         addInput(createInput<as_PJ301MPort>(Vec(10, 120), module, Flow::CV_TRIG_INPUT_1));
         addInput(createInput<as_PJ301MPort>(Vec(55, 120), module, Flow::RESET_1));
-        addInput(createInput<as_PJ301MPort>(Vec(10, 160), module, Flow::INPUT_1));
-        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 160), module, Flow::OUTPUT_1));
+        addInput(createInput<as_PJ301MPort>(Vec(10, 165), module, Flow::INPUT_1));
+        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 165), module, Flow::OUTPUT_1));
         //TRIGGER 2
         //SWITCH
         addParam(createParam<BigLEDBezel>(Vec(led_center, 50+y_offset), module, Flow::SWITCH_2));
@@ -176,10 +176,10 @@ struct FlowWidget : ModuleWidget {
         //PORTS
         addInput(createInput<as_PJ301MPort>(Vec(10, 120+y_offset), module, Flow::CV_TRIG_INPUT_2));
         addInput(createInput<as_PJ301MPort>(Vec(55, 120+y_offset), module, Flow::RESET_2));
-        addInput(createInput<as_PJ301MPort>(Vec(10, 160+y_offset), module, Flow::INPUT_2));
-        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 160+y_offset), module, Flow::OUTPUT_2));
+        addInput(createInput<as_PJ301MPort>(Vec(10, 165+y_offset), module, Flow::INPUT_2));
+        addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 165+y_offset), module, Flow::OUTPUT_2));
 
     }
 };
 
-Model *modelFlow = createModel<Flow, FlowWidget>("Flow");
+Model *modelFlow = createModel<Flow, FlowWidget>("Flow");   

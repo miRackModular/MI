@@ -226,8 +226,8 @@ struct TremoloFxWidget : ModuleWidget {
 		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, TremoloFx::FREQ_PARAM));
 		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, TremoloFx::BLEND_PARAM));
 		//LIGHTS
-		addChild(createLight<SmallLight<YellowRedLight>>(Vec(39, 122), module, TremoloFx::PHASE_POS_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, TremoloFx::BLEND_LIGHT));
+		addChild(createLight<SmallLight<YellowRedLight>>(Vec(42, 226), module, TremoloFx::PHASE_POS_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 176.5), module, TremoloFx::BLEND_LIGHT));
 		//BYPASS SWITCH
 		addParam(createParam<LEDBezel>(Vec(55, 149), module, TremoloFx::BYPASS_SWITCH ));
 		addChild(createLight<LedLight<RedLight>>(Vec(55+2.2, 149+2), module, TremoloFx::BYPASS_LED));

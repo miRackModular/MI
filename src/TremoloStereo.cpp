@@ -256,8 +256,8 @@ struct TremoloStereoFxWidget : ModuleWidget {
 		addParam(createParam<as_KnobSmall>(Vec(51, 50), module, TremoloStereoFx::FREQ_PARAM));
 		addParam(createParam<as_KnobSmall>(Vec(8, 145), module, TremoloStereoFx::BLEND_PARAM));
 		//LIGHTS
-		addChild(createLight<SmallLight<YellowRedLight>>(Vec(39, 122), module, TremoloStereoFx::PHASE_POS_LIGHT));
-		addChild(createLight<SmallLight<YellowLight>>(Vec(39, 187), module, TremoloStereoFx::BLEND_LIGHT));
+		addChild(createLight<SmallLight<YellowRedLight>>(Vec(42, 226), module, TremoloStereoFx::PHASE_POS_LIGHT));
+		addChild(createLight<SmallLight<YellowLight>>(Vec(30, 176.5), module, TremoloStereoFx::BLEND_LIGHT));
 		//CV INPUTS
 		addInput(createInput<as_PJ301MPort>(Vec(11, 89), module, TremoloStereoFx::WAVE_CV_INPUT));
 		addInput(createInput<as_PJ301MPort>(Vec(54, 89), module, TremoloStereoFx::FREQ_CV_INPUT));

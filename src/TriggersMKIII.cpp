@@ -60,7 +60,7 @@ void process(const ProcessArgs &args) override {
     //TRIGGER 1
     if (btnTrigger1.process(params[TRIGGER_SWITCH_1].getValue()) || extTrigger1_1.process(inputs[CV_TRIG_INPUT_1_1].getVoltage()) || extTrigger1_2.process(inputs[CV_TRIG_INPUT_1_2].getVoltage())) {
         resetLight1 = 1.0;
-        triggerPulse1.trigger(1e-3f);
+        triggerPulse1.trigger();
     }
     trg_pulse1 = triggerPulse1.process(1.0 * args.sampleTime);
     outputs[TRIGGER_OUT1].setVoltage((trg_pulse1 ? 10.0f : 0.0f));
@@ -71,7 +71,7 @@ void process(const ProcessArgs &args) override {
     //TRIGGER 2
     if (btnTrigger2.process(params[TRIGGER_SWITCH_2].getValue()) || extTrigger2_1.process(inputs[CV_TRIG_INPUT_2_1].getVoltage()) || extTrigger2_2.process(inputs[CV_TRIG_INPUT_2_2].getVoltage())) {
         resetLight2 = 1.0;
-        triggerPulse2.trigger(1e-3f);
+        triggerPulse2.trigger();
     }
 
     trg_pulse2 = triggerPulse2.process(1.0 * args.sampleTime);

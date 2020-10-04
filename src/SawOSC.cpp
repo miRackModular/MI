@@ -107,7 +107,7 @@ struct SawOscWidget : ModuleWidget {
 		addChild(createWidget<as_HexScrew>(Vec(0, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<as_HexScrew>(Vec(box.size.x - RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		//LIGHT
-		addChild(createLight<SmallLight<RedLight>>(Vec(7, 57), module, SawOsc::FREQ_LIGHT));
+		addChild(createLight<SmallLight<RedLight>>(Vec(44.5, 39), module, SawOsc::FREQ_LIGHT));
 		//PARAMS
 		addParam(createParam<as_KnobBlack>(Vec(11, 50), module, SawOsc::PITCH_PARAM));
 		addParam(createParam<as_KnobSmall>(Vec(15, 119), module, SawOsc::PW_PARAM));

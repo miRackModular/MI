@@ -198,7 +198,7 @@ struct LaunchGateWidget : ModuleWidget {
     // counter 1
     //COUNT DISPLAY
       NumberDisplayWidget *display1 = new NumberDisplayWidget();
-      display1->box.pos = Vec(10,50);
+      display1->box.pos = Vec(10,30);
       display1->box.size = Vec(30, 20);
       if (module) {
         display1->value = &module->count1;
@@ -206,30 +206,30 @@ struct LaunchGateWidget : ModuleWidget {
       addChild(display1);
     //LaunchGate DISPLAY  
       NumberDisplayWidget *display2 = new NumberDisplayWidget();
-      display2->box.pos = Vec(50,50);
+      display2->box.pos = Vec(50,30);
       display2->box.size = Vec(30, 20);
       if (module) {
         display2->value = &module->count_limit1;
       }
       addChild(display2);
 
-    int group_offset = 160;
+    int group_offset = 178;
 
-      addParam(createParam<LEDBezel>(Vec(11, 82), module, LaunchGate::RST_BUTTON1 ));
-      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3), module, LaunchGate::RESET_LIGHT1));
+      addParam(createParam<LEDBezel>(Vec(11, 69), module, LaunchGate::RST_BUTTON1 ));
+      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 69+2.2), module, LaunchGate::RESET_LIGHT1));
 
-      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73), module, LaunchGate::COUNT_NUM_PARAM_1)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(50, 57), module, LaunchGate::COUNT_NUM_PARAM_1)); 
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 125), module, LaunchGate::RESET_IN_1));
-      addInput(createInput<as_PJ301MPort>(Vec(55, 125), module, LaunchGate::CLK_IN_1));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 107), module, LaunchGate::RESET_IN_1));
+      addInput(createInput<as_PJ301MPort>(Vec(55, 107), module, LaunchGate::CLK_IN_1));
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 170), module, LaunchGate::INPUT_1));
-      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 170), module, LaunchGate::OUTPUT_1));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 153), module, LaunchGate::INPUT_1));
+      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 153), module, LaunchGate::OUTPUT_1));
     
     // counter 2
     //COUNT DISPLAY
       NumberDisplayWidget *display3 = new NumberDisplayWidget();
-      display3->box.pos = Vec(10,50 + group_offset);
+      display3->box.pos = Vec(10,30 + group_offset);
       display3->box.size = Vec(30, 20);
       if (module) {
         display3->value = &module->count_2;
@@ -237,23 +237,23 @@ struct LaunchGateWidget : ModuleWidget {
       addChild(display3);
     //LaunchGate DISPLAY  
       NumberDisplayWidget *display4 = new NumberDisplayWidget();
-      display4->box.pos = Vec(50,50 + group_offset);
+      display4->box.pos = Vec(50,30 + group_offset);
       display4->box.size = Vec(30, 20);
       if (module) {
         display4->value = &module->count_limit_2;
       }
       addChild(display4);
 
-      addParam(createParam<LEDBezel>(Vec(11, 82+ group_offset), module, LaunchGate::RST_BUTTON2 ));
-      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 82+2.3+ group_offset), module, LaunchGate::RESET_LIGHT2));
+      addParam(createParam<LEDBezel>(Vec(11, 69+ group_offset), module, LaunchGate::RST_BUTTON2 ));
+      addChild(createLight<LedLight<RedLight>>(Vec(11+2.2, 69+2.2+ group_offset), module, LaunchGate::RESET_LIGHT2));
 
-      addParam(createParam<as_KnobSmallSnap>(Vec(43, 73 + group_offset), module, LaunchGate::COUNT_NUM_PARAM_2)); 
+      addParam(createParam<as_KnobSmallSnap>(Vec(50, 57 + group_offset), module, LaunchGate::COUNT_NUM_PARAM_2)); 
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 125 + group_offset), module, LaunchGate::RESET_IN_2));
-      addInput(createInput<as_PJ301MPort>(Vec(55, 125 + group_offset), module, LaunchGate::CLK_IN_2));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 107 + group_offset), module, LaunchGate::RESET_IN_2));
+      addInput(createInput<as_PJ301MPort>(Vec(55, 107 + group_offset), module, LaunchGate::CLK_IN_2));
 
-      addInput(createInput<as_PJ301MPort>(Vec(10, 170 + group_offset), module, LaunchGate::INPUT_2));
-      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 170 + group_offset), module, LaunchGate::OUTPUT_2));
+      addInput(createInput<as_PJ301MPort>(Vec(10, 153 + group_offset), module, LaunchGate::INPUT_2));
+      addOutput(createOutput<as_PJ301MPortGold>(Vec(55, 153 + group_offset), module, LaunchGate::OUTPUT_2));
   
   }
 };
