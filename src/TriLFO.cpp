@@ -135,7 +135,7 @@ struct TriLFO : Module {
 		configParam(TriLFO::OFFSET2_PARAM, 0.0f, 1.0f, 1.0f, "CH 2 Offset");
 		configParam(TriLFO::INVERT2_PARAM, 0.0f, 1.0f, 1.0f, "CH 2 Invert");
 		configParam(TriLFO::FREQ3_PARAM, -8.0f, 10.0f, -1.0f, "CH 3 Frequency", " Hz", 2, 1);
-		configParam(TriLFO::OFFSET3_PARAM, 0.0f, 1.0f, 1.0f, "CH 2 Offset");
+		configParam(TriLFO::OFFSET3_PARAM, 0.0f, 1.0f, 1.0f, "CH 3 Offset");
 		configParam(TriLFO::INVERT3_PARAM, 0.0f, 1.0f, 1.0f, "CH 3 Invert");	
 	}
 

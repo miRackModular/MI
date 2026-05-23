@@ -30,8 +30,7 @@ struct KillGate : Module {
 	};
 	enum OutputIds {
 		OUTPUT_1,
-    OUTPUT_2,
-    OUTPUT_3,    
+    OUTPUT_2,    
 		NUM_OUTPUTS
 	};
     enum LightIds {
